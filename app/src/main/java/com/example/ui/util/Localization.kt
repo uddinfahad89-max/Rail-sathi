@@ -66,6 +66,30 @@ object AppStrings {
         AppLanguage.ENGLISH -> "Journey Date (IST):"
     }
 
+    fun pickFromCalendar(lang: AppLanguage): String = when (lang) {
+        AppLanguage.BENGALI -> "ক্যালেন্ডার"
+        AppLanguage.HINDI -> "कैलेंडर"
+        AppLanguage.ENGLISH -> "Calendar"
+    }
+
+    fun selectDateDialogTitle(lang: AppLanguage): String = when (lang) {
+        AppLanguage.BENGALI -> "যাত্রার তারিখ নির্বাচন করুন"
+        AppLanguage.HINDI -> "यात्रा की तारीख चुनें"
+        AppLanguage.ENGLISH -> "Select Journey Date"
+    }
+
+    fun popularStationsLabel(lang: AppLanguage): String = when (lang) {
+        AppLanguage.BENGALI -> "জনপ্রিয় স্টেশন:"
+        AppLanguage.HINDI -> "लोकप्रिय स्टेशन:"
+        AppLanguage.ENGLISH -> "Popular Stations:"
+    }
+
+    fun typeToSearchHint(lang: AppLanguage): String = when (lang) {
+        AppLanguage.BENGALI -> "স্টেশনের নাম বা কোড লিখুন (যেমন Howrah, HWH, হাওড়া...)"
+        AppLanguage.HINDI -> "स्टेशन का नाम या कोड लिखें (जैसे Howrah, HWH, हावड़ा...)"
+        AppLanguage.ENGLISH -> "Type station name or code (e.g. Howrah, HWH...)"
+    }
+
     fun searchButton(lang: AppLanguage): String = when (lang) {
         AppLanguage.BENGALI -> "ট্রেন ও স্প্লিট টিকিট অনুসন্ধান করুন"
         AppLanguage.HINDI -> "ट्रेन एवं स्प्लिट टिकट खोजें"

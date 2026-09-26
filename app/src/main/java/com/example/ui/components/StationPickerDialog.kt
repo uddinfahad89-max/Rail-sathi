@@ -115,7 +115,7 @@ fun StationPickerDialog(
                     onValueChange = { searchQuery = it },
                     placeholder = { Text(placeholderText, fontSize = 13.sp) },
                     leadingIcon = {
-                        Icon(imageVector = Icons.Default.Search, contentDescription = "অনুসন্ধান")
+                        Icon(imageVector = Icons.Default.Search, contentDescription = "অনুসন্ধান", tint = RailBluePrimary)
                     },
                     trailingIcon = {
                         if (searchQuery.isNotEmpty()) {
@@ -131,7 +131,36 @@ fun StationPickerDialog(
                     shape = RoundedCornerShape(12.dp)
                 )
 
-                Spacer(modifier = Modifier.height(10.dp))
+                Spacer(modifier = Modifier.height(8.dp))
+
+                // Popular Stations Quick Chips
+                val popularCodes = listOf("HWH", "NDLS", "SDAH", "CSMT", "KOAA", "PNBE", "MAS", "SBC", "GHY", "PURI")
+                androidx.compose.foundation.lazy.LazyRow(
+                    horizontalArrangement = Arrangement.spacedBy(6.dp),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    items(popularCodes) { code ->
+                        val stn = StationDatabase.getStationByCode(code) ?: stations.firstOrNull { it.code == code }
+                        if (stn != null) {
+                            SuggestionChip(
+                                onClick = { onSelectStation(stn) },
+                                label = {
+                                    Text(
+                                        text = "${stn.code} - ${stn.getName(currentLanguage)}",
+                                        fontSize = 11.sp,
+                                        fontWeight = FontWeight.SemiBold
+                                    )
+                                },
+                                shape = RoundedCornerShape(16.dp),
+                                colors = SuggestionChipDefaults.suggestionChipColors(
+                                    containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f)
+                                )
+                            )
+                        }
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(8.dp))
 
                 // Station list
                 LazyColumn(

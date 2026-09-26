@@ -14,7 +14,10 @@ import {
   User, 
   MapPin, 
   ChevronRight,
-  ShieldCheck
+  ShieldCheck,
+  Calendar,
+  ArrowUpDown,
+  X
 } from 'lucide-react';
 import { STATIONS, TRAINS_SAMPLE, SPLIT_OPTIONS, PNR_DEMOS, Language } from './data';
 
@@ -26,6 +29,11 @@ export default function App() {
   // Search state
   const [fromCode, setFromCode] = useState('HWH');
   const [toCode, setToCode] = useState('NDLS');
+  const [fromQuery, setFromQuery] = useState('');
+  const [toQuery, setToQuery] = useState('');
+  const [isFromOpen, setIsFromOpen] = useState(false);
+  const [isToOpen, setIsToOpen] = useState(false);
+  const [journeyDate, setJourneyDate] = useState('2026-09-26');
   const [selectedSplit, setSelectedSplit] = useState<any | null>(null);
 
   // PNR state
@@ -125,10 +133,40 @@ export default function App() {
     }, 400);
   };
 
+  const getStation = (code: string) => {
+    return STATIONS.find(x => x.code.toUpperCase() === code.toUpperCase()) || {
+      code,
+      nameBn: `${code} স্টেশন`,
+      nameHi: `${code} स्टेशन`,
+      nameEn: `${code} Station`,
+      state: 'India'
+    };
+  };
+
   const getStationName = (code: string) => {
-    const s = STATIONS.find(x => x.code === code);
-    if (!s) return code;
+    const s = getStation(code);
     return lang === 'bn' ? s.nameBn : lang === 'hi' ? s.nameHi : s.nameEn;
+  };
+
+  const formatDisplayDate = (dStr: string) => {
+    try {
+      const [y, m, d] = dStr.split('-');
+      const monthsBn = ['জানুয়ারি', 'ফেব্রুয়ারি', 'মার্চ', 'এপ্রিল', 'মে', 'জুন', 'জুলাই', 'আগস্ট', 'সেপ্টেম্বর', 'অক্টোবর', 'নভেম্বর', 'ডিসেম্বর'];
+      const monthsHi = ['जनवरी', 'फरवरी', 'मार्च', 'अप्रैल', 'मई', 'जून', 'जुलाई', 'अगस्त', 'सितंबर', 'अक्टूबर', 'नवंबर', 'दिसंबर'];
+      const monthsEn = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      const mIdx = Math.max(0, Math.min(11, parseInt(m, 10) - 1));
+      if (lang === 'bn') return `${d} ${monthsBn[mIdx]} ${y}`;
+      if (lang === 'hi') return `${d} ${monthsHi[mIdx]} ${y}`;
+      return `${d} ${monthsEn[mIdx]} ${y}`;
+    } catch {
+      return dStr;
+    }
+  };
+
+  const handleSwapStations = () => {
+    const temp = fromCode;
+    setFromCode(toCode);
+    setToCode(temp);
   };
 
   return (
@@ -209,53 +247,244 @@ export default function App() {
         {tab === 'search' && (
           <div className="space-y-6">
             {/* Search Box */}
-            <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-5">
-              <h2 className="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
-                <Search className="w-5 h-5 text-blue-700" />
-                {lang === 'bn' ? 'ট্রেন অনুসন্ধান ও আসন প্রাপ্যতা' : lang === 'hi' ? 'ट्रेन खोज एवं सीट उपलब्धता' : 'Train Search & Seat Availability'}
-              </h2>
+            <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 space-y-4">
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
+                <h2 className="text-lg font-bold text-slate-800 flex items-center gap-2">
+                  <Search className="w-5 h-5 text-blue-700" />
+                  {lang === 'bn' ? 'ট্রেন অনুসন্ধান ও নিশ্চিত সিট প্ল্যানার' : lang === 'hi' ? 'ट्रेन खोज एवं कन्फर्म सीट प्लानर' : 'Train Search & Seat Planner'}
+                </h2>
+                <div className="flex items-center gap-1 text-xs font-semibold text-blue-800 bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
+                  <Calendar className="w-3.5 h-3.5" />
+                  <span>{formatDisplayDate(journeyDate)}</span>
+                </div>
+              </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
-                <div>
-                  <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider block mb-1">
-                    {lang === 'bn' ? 'কোথা থেকে (From)' : lang === 'hi' ? 'कहाँ से (From)' : 'From Station'}
+              {/* Station Search by Typing (From & To) */}
+              <div className="grid grid-cols-1 md:grid-cols-7 gap-3 items-end">
+                {/* From Station Searchable Input */}
+                <div className="md:col-span-3 relative">
+                  <label className="text-xs font-semibold text-slate-600 block mb-1">
+                    {lang === 'bn' ? 'কোথা থেকে (From) • স্টেশন নাম বা কোড লিখুন' : lang === 'hi' ? 'कहाँ से (From) • स्टेशन नाम या कोड लिखें' : 'From Station • Type name or code'}
                   </label>
-                  <select 
-                    value={fromCode} 
-                    onChange={e => setFromCode(e.target.value)} 
-                    className="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                  <div className="relative">
+                    <input
+                      type="text"
+                      value={fromQuery || `${getStationName(fromCode)} (${fromCode})`}
+                      onFocus={() => { setFromQuery(''); setIsFromOpen(true); }}
+                      onChange={e => { setFromQuery(e.target.value); setIsFromOpen(true); }}
+                      placeholder={lang === 'bn' ? 'যেমন HWH, হাওড়া, Sealdah...' : 'e.g. HWH, Howrah, NDLS...'}
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 font-semibold text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 pr-9"
+                    />
+                    {fromQuery ? (
+                      <button 
+                        type="button"
+                        onClick={() => { setFromQuery(''); setIsFromOpen(false); }}
+                        className="absolute right-3 top-3 text-slate-400 hover:text-slate-600"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    ) : (
+                      <Search className="w-4 h-4 text-slate-400 absolute right-3 top-3 pointer-events-none" />
+                    )}
+                  </div>
+
+                  {/* Dropdown Suggestions */}
+                  {isFromOpen && (
+                    <div className="absolute left-0 right-0 top-full mt-1 bg-white rounded-xl shadow-xl border border-slate-200 z-50 max-h-60 overflow-y-auto">
+                      <div className="p-2 text-[11px] font-semibold text-slate-400 uppercase tracking-wider bg-slate-50 border-b border-slate-100">
+                        {lang === 'bn' ? 'স্টেশন নির্বাচন করুন:' : 'Select station:'}
+                      </div>
+                      {STATIONS.filter(s => {
+                        if (!fromQuery.trim()) return true;
+                        const q = fromQuery.trim().toLowerCase();
+                        return s.code.toLowerCase().includes(q) ||
+                               s.nameEn.toLowerCase().includes(q) ||
+                               s.nameBn.toLowerCase().includes(q) ||
+                               s.nameHi.toLowerCase().includes(q) ||
+                               s.state.toLowerCase().includes(q);
+                      }).slice(0, 15).map(s => (
+                        <button
+                          key={s.code}
+                          type="button"
+                          onClick={() => {
+                            setFromCode(s.code);
+                            setFromQuery('');
+                            setIsFromOpen(false);
+                          }}
+                          className={`w-full text-left px-3 py-2 text-xs hover:bg-blue-50 flex items-center justify-between border-b border-slate-50 transition ${fromCode === s.code ? 'bg-blue-50/70 font-bold' : ''}`}
+                        >
+                          <div>
+                            <span className="font-bold text-slate-800">{lang === 'bn' ? s.nameBn : lang === 'hi' ? s.nameHi : s.nameEn}</span>
+                            <span className="text-slate-400 ml-1.5 font-normal">({s.nameEn}) • {s.state}</span>
+                          </div>
+                          <span className="bg-blue-100 text-blue-800 text-[10px] font-extrabold px-1.5 py-0.5 rounded">
+                            {s.code}
+                          </span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Station Swap Button */}
+                <div className="flex justify-center md:pb-1">
+                  <button
+                    type="button"
+                    onClick={handleSwapStations}
+                    title={lang === 'bn' ? 'স্টেশন অদলবদল করুন' : 'Swap Stations'}
+                    className="p-2.5 rounded-full bg-slate-100 hover:bg-blue-50 text-slate-600 hover:text-blue-700 transition border border-slate-200 shadow-sm"
                   >
-                    {STATIONS.map(s => (
-                      <option key={s.code} value={s.code}>
-                        {lang === 'bn' ? s.nameBn : lang === 'hi' ? s.nameHi : s.nameEn} ({s.code})
-                      </option>
-                    ))}
-                  </select>
+                    <ArrowUpDown className="w-4 h-4 md:rotate-90" />
+                  </button>
+                </div>
+
+                {/* To Station Searchable Input */}
+                <div className="md:col-span-3 relative">
+                  <label className="text-xs font-semibold text-slate-600 block mb-1">
+                    {lang === 'bn' ? 'কোথায় যাবেন (To) • স্টেশন নাম বা কোড লিখুন' : lang === 'hi' ? 'कहाँ तक (To) • स्टेशन नाम या कोड लिखें' : 'To Station • Type name or code'}
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="text"
+                      value={toQuery || `${getStationName(toCode)} (${toCode})`}
+                      onFocus={() => { setToQuery(''); setIsToOpen(true); }}
+                      onChange={e => { setToQuery(e.target.value); setIsToOpen(true); }}
+                      placeholder={lang === 'bn' ? 'যেমন NDLS, দিল্লি, Patna...' : 'e.g. NDLS, Delhi, CSMT...'}
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 font-semibold text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 pr-9"
+                    />
+                    {toQuery ? (
+                      <button 
+                        type="button"
+                        onClick={() => { setToQuery(''); setIsToOpen(false); }}
+                        className="absolute right-3 top-3 text-slate-400 hover:text-slate-600"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    ) : (
+                      <Search className="w-4 h-4 text-slate-400 absolute right-3 top-3 pointer-events-none" />
+                    )}
+                  </div>
+
+                  {/* Dropdown Suggestions */}
+                  {isToOpen && (
+                    <div className="absolute left-0 right-0 top-full mt-1 bg-white rounded-xl shadow-xl border border-slate-200 z-50 max-h-60 overflow-y-auto">
+                      <div className="p-2 text-[11px] font-semibold text-slate-400 uppercase tracking-wider bg-slate-50 border-b border-slate-100">
+                        {lang === 'bn' ? 'স্টেশন নির্বাচন করুন:' : 'Select station:'}
+                      </div>
+                      {STATIONS.filter(s => {
+                        if (!toQuery.trim()) return true;
+                        const q = toQuery.trim().toLowerCase();
+                        return s.code.toLowerCase().includes(q) ||
+                               s.nameEn.toLowerCase().includes(q) ||
+                               s.nameBn.toLowerCase().includes(q) ||
+                               s.nameHi.toLowerCase().includes(q) ||
+                               s.state.toLowerCase().includes(q);
+                      }).slice(0, 15).map(s => (
+                        <button
+                          key={s.code}
+                          type="button"
+                          onClick={() => {
+                            setToCode(s.code);
+                            setToQuery('');
+                            setIsToOpen(false);
+                          }}
+                          className={`w-full text-left px-3 py-2 text-xs hover:bg-blue-50 flex items-center justify-between border-b border-slate-50 transition ${toCode === s.code ? 'bg-blue-50/70 font-bold' : ''}`}
+                        >
+                          <div>
+                            <span className="font-bold text-slate-800">{lang === 'bn' ? s.nameBn : lang === 'hi' ? s.nameHi : s.nameEn}</span>
+                            <span className="text-slate-400 ml-1.5 font-normal">({s.nameEn}) • {s.state}</span>
+                          </div>
+                          <span className="bg-blue-100 text-blue-800 text-[10px] font-extrabold px-1.5 py-0.5 rounded">
+                            {s.code}
+                          </span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Journey Date Selection & Quick Dates */}
+              <div className="pt-2 border-t border-slate-100 grid grid-cols-1 md:grid-cols-3 gap-4 items-center">
+                <div className="md:col-span-2">
+                  <label className="text-xs font-semibold text-slate-600 block mb-1 flex items-center gap-1.5">
+                    <Calendar className="w-3.5 h-3.5 text-blue-700" />
+                    <span>{lang === 'bn' ? 'যাত্রার তারিখ নির্বাচন করুন (IST):' : lang === 'hi' ? 'यात्रा की तारीख चुनें (IST):' : 'Journey Date (IST):'}</span>
+                  </label>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <input
+                      type="date"
+                      value={journeyDate}
+                      onChange={e => setJourneyDate(e.target.value)}
+                      className="bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-sm font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    />
+                    {/* Quick relative date buttons */}
+                    <div className="flex items-center gap-1.5 text-xs">
+                      <button
+                        type="button"
+                        onClick={() => setJourneyDate('2026-09-26')}
+                        className={`px-2.5 py-1.5 rounded-lg border font-medium transition ${journeyDate === '2026-09-26' ? 'bg-blue-700 text-white border-blue-700 shadow-sm' : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'}`}
+                      >
+                        {lang === 'bn' ? 'আজ (২৬ সেপ্টে)' : lang === 'hi' ? 'आज (26 सितं)' : 'Today (26 Sep)'}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setJourneyDate('2026-09-27')}
+                        className={`px-2.5 py-1.5 rounded-lg border font-medium transition ${journeyDate === '2026-09-27' ? 'bg-blue-700 text-white border-blue-700 shadow-sm' : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'}`}
+                      >
+                        {lang === 'bn' ? 'কাল (২৭ সেপ্টে)' : lang === 'hi' ? 'कल (27 सितं)' : 'Tomorrow (27 Sep)'}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setJourneyDate('2026-09-28')}
+                        className={`px-2.5 py-1.5 rounded-lg border font-medium transition ${journeyDate === '2026-09-28' ? 'bg-blue-700 text-white border-blue-700 shadow-sm' : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'}`}
+                      >
+                        {lang === 'bn' ? 'পরশু (২৮ সেপ্টে)' : lang === 'hi' ? 'परसों (28 सितं)' : 'Day After (28 Sep)'}
+                      </button>
+                    </div>
+                  </div>
                 </div>
 
                 <div>
-                  <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider block mb-1">
-                    {lang === 'bn' ? 'কোথায় যাবেন (To)' : lang === 'hi' ? 'कहाँ तक (To)' : 'To Station'}
-                  </label>
-                  <select 
-                    value={toCode} 
-                    onChange={e => setToCode(e.target.value)} 
-                    className="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                  <button 
+                    type="button"
+                    onClick={() => {
+                      setIsFromOpen(false);
+                      setIsToOpen(false);
+                    }}
+                    className="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-2.5 px-4 rounded-xl shadow transition flex items-center justify-center gap-2"
                   >
-                    {STATIONS.map(s => (
-                      <option key={s.code} value={s.code}>
-                        {lang === 'bn' ? s.nameBn : lang === 'hi' ? s.nameHi : s.nameEn} ({s.code})
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div className="md:pt-5">
-                  <button className="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-2.5 px-4 rounded-xl shadow transition flex items-center justify-center gap-2">
                     <Search className="w-4 h-4" />
                     <span>{lang === 'bn' ? 'ট্রেন ও স্প্লিট খুঁজুন' : lang === 'hi' ? 'ट्रेन व स्प्लिट खोजें' : 'Search Trains'}</span>
                   </button>
                 </div>
+              </div>
+
+              {/* Popular Stations Shortcuts */}
+              <div className="pt-2 border-t border-slate-100 flex flex-wrap items-center gap-1.5 text-xs">
+                <span className="text-slate-400 font-medium mr-1">
+                  {lang === 'bn' ? 'জনপ্রিয় স্টেশন:' : lang === 'hi' ? 'लोकप्रिय स्टेशन:' : 'Popular:'}
+                </span>
+                {['HWH', 'NDLS', 'SDAH', 'CSMT', 'KOAA', 'PNBE', 'MAS', 'SBC', 'GHY'].map(code => {
+                  const s = STATIONS.find(x => x.code === code);
+                  if (!s) return null;
+                  return (
+                    <button
+                      key={code}
+                      type="button"
+                      onClick={() => {
+                        if (fromCode === code) {
+                          handleSwapStations();
+                        } else {
+                          setToCode(code);
+                        }
+                      }}
+                      className="bg-slate-100 hover:bg-blue-100 text-slate-700 hover:text-blue-900 px-2 py-0.5 rounded-md font-medium transition"
+                    >
+                      {code} ({lang === 'bn' ? s.nameBn : lang === 'hi' ? s.nameHi : s.nameEn})
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
@@ -325,9 +554,15 @@ export default function App() {
 
             {/* Direct Trains List */}
             <div className="space-y-4">
-              <h3 className="font-bold text-slate-700 text-sm">
-                {lang === 'bn' ? 'সরাসরি উপলব্ধ ট্রেনসমূহ:' : lang === 'hi' ? 'सीधी उपलब्ध ट्रेनें:' : 'Direct Available Trains:'}
-              </h3>
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <h3 className="font-bold text-slate-700 text-sm">
+                  {lang === 'bn' ? 'সরাসরি উপলব্ধ ট্রেনসমূহ:' : lang === 'hi' ? 'सीधी उपलब्ध ट्रेनें:' : 'Direct Available Trains:'}
+                </h3>
+                <span className="text-xs font-semibold bg-blue-100 text-blue-900 px-3 py-1 rounded-full flex items-center gap-1.5">
+                  <Calendar className="w-3.5 h-3.5 text-blue-700" />
+                  <span>{formatDisplayDate(journeyDate)} • {getStationName(fromCode)} ({fromCode}) ➔ {getStationName(toCode)} ({toCode})</span>
+                </span>
+              </div>
 
               {TRAINS_SAMPLE.map(t => (
                 <div key={t.number} className="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 space-y-3">

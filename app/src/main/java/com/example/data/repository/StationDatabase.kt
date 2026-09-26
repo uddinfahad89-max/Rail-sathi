@@ -450,6 +450,8 @@ object StationDatabase {
 
     fun findByCode(code: String): Station? = stationMap[code.uppercase().trim()]
 
+    fun getStationByCode(code: String): Station? = findByCode(code)
+
     fun getOrSynthesize(codeOrName: String): Station {
         val query = codeOrName.trim().uppercase()
         val found = stationMap[query]

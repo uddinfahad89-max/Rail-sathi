@@ -17,14 +17,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.data.model.*
+import com.example.data.repository.StationDatabase
 import com.example.ui.components.SplitTicketDetailDialog
 import com.example.ui.components.StationPickerDialog
 import com.example.ui.theme.*
 import com.example.ui.util.AppStrings
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
+import java.util.TimeZone
 
 @Composable
 fun TrainSearchScreen(
@@ -47,6 +53,7 @@ fun TrainSearchScreen(
 ) {
     var showSourcePicker by remember { mutableStateOf(false) }
     var showDestPicker by remember { mutableStateOf(false) }
+    var showDatePicker by remember { mutableStateOf(false) }
 
     val pickerTitleFrom = when (currentLanguage) {
         AppLanguage.BENGALI -> "প্রারম্ভিক স্টেশন নির্বাচন করুন"
@@ -91,6 +98,17 @@ fun TrainSearchScreen(
             splitOption = showSplitDetailsDialog,
             currentLanguage = currentLanguage,
             onDismiss = onCloseSplitDetails
+        )
+    }
+
+    if (showDatePicker) {
+        JourneyDatePickerDialog(
+            currentLanguage = currentLanguage,
+            onDateSelected = {
+                onSelectJourneyDate(it)
+                showDatePicker = false
+            },
+            onDismiss = { showDatePicker = false }
         )
     }
 
@@ -166,33 +184,214 @@ fun TrainSearchScreen(
                         }
                     }
 
-                    // Journey Dates
-                    Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                    // Quick Popular Stations Row
+                    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                         Text(
-                            text = AppStrings.journeyDate(currentLanguage),
-                            style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.SemiBold)
+                            text = AppStrings.popularStationsLabel(currentLanguage),
+                            style = MaterialTheme.typography.labelSmall.copy(
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                fontWeight = FontWeight.SemiBold
+                            )
                         )
+                        val popularCodes = listOf("HWH", "NDLS", "SDAH", "CSMT", "KOAA", "PNBE", "MAS", "SBC", "GHY")
+                        LazyRow(
+                            horizontalArrangement = Arrangement.spacedBy(6.dp),
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            items(popularCodes) { code ->
+                                val stn = StationDatabase.getStationByCode(code) ?: allStations.firstOrNull { it.code == code }
+                                if (stn != null) {
+                                    SuggestionChip(
+                                        onClick = {
+                                            if (sourceStation.code == code) {
+                                                onSwapStations()
+                                            } else {
+                                                onSelectDestinationStation(stn)
+                                            }
+                                        },
+                                        label = {
+                                            Text(
+                                                text = "${stn.code} - ${stn.getName(currentLanguage)}",
+                                                fontSize = 11.sp
+                                            )
+                                        },
+                                        shape = RoundedCornerShape(14.dp),
+                                        colors = SuggestionChipDefaults.suggestionChipColors(
+                                            containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f)
+                                        )
+                                    )
+                                }
+                            }
+                        }
+                    }
+
+                    // Journey Dates Section with Calendar and Quick Chips
+                    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                         Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = AppStrings.journeyDate(currentLanguage),
+                                style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.SemiBold)
+                            )
+                            TextButton(
+                                onClick = { showDatePicker = true },
+                                contentPadding = PaddingValues(horizontal = 8.dp, vertical = 2.dp),
+                                modifier = Modifier.testTag("open_calendar_button")
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.DateRange,
+                                    contentDescription = null,
+                                    modifier = Modifier.size(16.dp),
+                                    tint = RailBluePrimary
+                                )
+                                Spacer(modifier = Modifier.width(4.dp))
+                                Text(
+                                    text = AppStrings.pickFromCalendar(currentLanguage),
+                                    fontSize = 12.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = RailBluePrimary
+                                )
+                            }
+                        }
+
+                        // Selected Date Card (Interactive)
+                        Surface(
+                            shape = RoundedCornerShape(10.dp),
+                            color = RailBluePrimary.copy(alpha = 0.08f),
+                            border = BorderStroke(1.dp, RailBluePrimary.copy(alpha = 0.3f)),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable { showDatePicker = true }
+                                .testTag("selected_date_banner")
+                        ) {
+                            Row(
+                                modifier = Modifier.padding(horizontal = 12.dp, vertical = 10.dp),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ) {
+                                Row(
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Default.CalendarMonth,
+                                        contentDescription = null,
+                                        tint = RailBluePrimary
+                                    )
+                                    Column {
+                                        Text(
+                                            text = if (currentLanguage == AppLanguage.BENGALI) "নির্বাচিত তারিখ:"
+                                            else if (currentLanguage == AppLanguage.HINDI) "चयनित तारीख:"
+                                            else "Selected Date:",
+                                            style = MaterialTheme.typography.labelSmall.copy(color = MaterialTheme.colorScheme.onSurfaceVariant)
+                                        )
+                                        Text(
+                                            text = formatJourneyDateDisplay(journeyDate, currentLanguage),
+                                            style = MaterialTheme.typography.bodyMedium.copy(
+                                                fontWeight = FontWeight.Bold,
+                                                color = RailBluePrimary
+                                            )
+                                        )
+                                    }
+                                }
+                                Surface(
+                                    shape = RoundedCornerShape(8.dp),
+                                    color = RailBluePrimary
+                                ) {
+                                    Text(
+                                        text = if (currentLanguage == AppLanguage.BENGALI) "তারিখ বাছুন 📅"
+                                        else if (currentLanguage == AppLanguage.HINDI) "तारीख बदलें 📅"
+                                        else "Change Date 📅",
+                                        color = Color.White,
+                                        fontSize = 11.sp,
+                                        fontWeight = FontWeight.Bold,
+                                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+                                    )
+                                }
+                            }
+                        }
+
+                        // Quick Relative Date Selection Chips
+                        val quickDateOptions = remember {
+                            val cal = Calendar.getInstance(TimeZone.getTimeZone("Asia/Kolkata"))
+                            val sdf = SimpleDateFormat("dd MMM yyyy", Locale.US).apply {
+                                timeZone = TimeZone.getTimeZone("Asia/Kolkata")
+                            }
+                            val dayMonthSdf = SimpleDateFormat("dd MMM", Locale.US).apply {
+                                timeZone = TimeZone.getTimeZone("Asia/Kolkata")
+                            }
+
+                            val d0 = sdf.format(cal.time)
+                            val dm0 = dayMonthSdf.format(cal.time)
+
+                            cal.add(Calendar.DAY_OF_YEAR, 1)
+                            val d1 = sdf.format(cal.time)
+                            val dm1 = dayMonthSdf.format(cal.time)
+
+                            cal.add(Calendar.DAY_OF_YEAR, 1)
+                            val d2 = sdf.format(cal.time)
+                            val dm2 = dayMonthSdf.format(cal.time)
+
+                            listOf(
+                                Triple(d0, "আজ ($dm0)", "आज ($dm0)"),
+                                Triple(d1, "আগামীকাল ($dm1)", "कल ($dm1)"),
+                                Triple(d2, "পরশু ($dm2)", "परसों ($dm2)")
+                            )
+                        }
+
+                        LazyRow(
                             horizontalArrangement = Arrangement.spacedBy(8.dp),
                             modifier = Modifier.fillMaxWidth()
                         ) {
-                            val dates = listOf("28 Sep 2026", "29 Sep 2026", "30 Sep 2026")
-                            dates.forEach { d ->
-                                val isSelected = journeyDate == d
+                            items(quickDateOptions) { (dateStr, labelBn, labelHi) ->
+                                val isSelected = journeyDate == dateStr
                                 val label = when (currentLanguage) {
-                                    AppLanguage.BENGALI -> d.replace("Sep", "সেপ্টে").replace("2026", "২০২৬")
-                                    AppLanguage.HINDI -> d.replace("Sep", "सितंबर")
-                                    AppLanguage.ENGLISH -> d
+                                    AppLanguage.BENGALI -> labelBn.replace("Sep", "সেপ্টে").replace("Oct", "অক্টো")
+                                    AppLanguage.HINDI -> labelHi.replace("Sep", "सितं").replace("Oct", "अक्तू")
+                                    AppLanguage.ENGLISH -> if (dateStr == quickDateOptions[0].first) "Today (${dateStr.substring(0, 6)})"
+                                    else if (dateStr == quickDateOptions[1].first) "Tomorrow (${dateStr.substring(0, 6)})"
+                                    else "Day After (${dateStr.substring(0, 6)})"
                                 }
                                 FilterChip(
                                     selected = isSelected,
-                                    onClick = { onSelectJourneyDate(d) },
-                                    label = { Text(label, fontSize = 12.sp) },
+                                    onClick = { onSelectJourneyDate(dateStr) },
+                                    label = {
+                                        Text(
+                                            text = label,
+                                            fontSize = 12.sp,
+                                            fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
+                                        )
+                                    },
                                     colors = FilterChipDefaults.filterChipColors(
                                         selectedContainerColor = RailBluePrimary,
                                         selectedLabelColor = Color.White
                                     ),
-                                    modifier = Modifier.testTag("date_chip_$d")
+                                    modifier = Modifier.testTag("date_chip_$dateStr")
+                                )
+                            }
+
+                            item {
+                                FilterChip(
+                                    selected = false,
+                                    onClick = { showDatePicker = true },
+                                    label = {
+                                        Row(
+                                            verticalAlignment = Alignment.CenterVertically,
+                                            horizontalArrangement = Arrangement.spacedBy(4.dp)
+                                        ) {
+                                            Icon(Icons.Default.EditCalendar, contentDescription = null, modifier = Modifier.size(14.dp))
+                                            Text(
+                                                text = if (currentLanguage == AppLanguage.BENGALI) "অন্য তারিখ..."
+                                                else if (currentLanguage == AppLanguage.HINDI) "अन्य तारीख..."
+                                                else "Other Date...",
+                                                fontSize = 12.sp
+                                            )
+                                        }
+                                    },
+                                    modifier = Modifier.testTag("date_chip_other")
                                 )
                             }
                         }
@@ -276,16 +475,33 @@ fun TrainSearchScreen(
             }
         }
 
-        // Direct Trains Header
+        // Direct Trains Header with Route and Date Context
         item {
-            Text(
-                text = AppStrings.directTrainsHeader(currentLanguage, searchResults.size),
-                style = MaterialTheme.typography.titleSmall.copy(
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onBackground
-                ),
-                modifier = Modifier.padding(top = 8.dp)
-            )
+            Column(
+                modifier = Modifier.padding(top = 8.dp),
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                Text(
+                    text = AppStrings.directTrainsHeader(currentLanguage, searchResults.size),
+                    style = MaterialTheme.typography.titleSmall.copy(
+                        fontWeight = FontWeight.Bold,
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+                )
+                Surface(
+                    shape = RoundedCornerShape(6.dp),
+                    color = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f)
+                ) {
+                    Text(
+                        text = "📅 ${formatJourneyDateDisplay(journeyDate, currentLanguage)}  •  ${sourceStation.getName(currentLanguage)} (${sourceStation.code}) ➔ ${destinationStation.getName(currentLanguage)} (${destinationStation.code})",
+                        style = MaterialTheme.typography.labelSmall.copy(
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            fontWeight = FontWeight.Medium
+                        ),
+                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+                    )
+                }
+            }
         }
 
         // Direct Train Cards
@@ -306,7 +522,7 @@ fun StationField(
     onClick: () -> Unit
 ) {
     Card(
-        shape = RoundedCornerShape(10.dp),
+        shape = RoundedCornerShape(12.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)),
         modifier = Modifier
             .fillMaxWidth()
@@ -331,11 +547,31 @@ fun StationField(
                     style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold)
                 )
             }
-            Icon(
-                imageVector = Icons.Default.ArrowDropDown,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.onSurfaceVariant
-            )
+            Surface(
+                shape = RoundedCornerShape(8.dp),
+                color = RailBluePrimary.copy(alpha = 0.12f)
+            ) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(4.dp),
+                    modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Search,
+                        contentDescription = "লিখুন বা খুঁজুন",
+                        tint = RailBluePrimary,
+                        modifier = Modifier.size(13.dp)
+                    )
+                    Text(
+                        text = if (currentLanguage == AppLanguage.BENGALI) "লিখুন/খুঁজুন"
+                        else if (currentLanguage == AppLanguage.HINDI) "लिखें/खोजें"
+                        else "Type/Search",
+                        fontSize = 11.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = RailBluePrimary
+                    )
+                }
+            }
         }
     }
 }
@@ -615,5 +851,101 @@ fun TrainResultCard(train: Train, currentLanguage: AppLanguage) {
                 }
             }
         }
+    }
+}
+
+fun formatJourneyDateDisplay(dateStr: String, lang: AppLanguage): String {
+    return when (lang) {
+        AppLanguage.BENGALI -> {
+            dateStr
+                .replace("Jan", "জানুয়ারি")
+                .replace("Feb", "ফেব্রুয়ারি")
+                .replace("Mar", "মার্চ")
+                .replace("Apr", "এপ্রিল")
+                .replace("May", "মে")
+                .replace("Jun", "জুন")
+                .replace("Jul", "জুলাই")
+                .replace("Aug", "আগস্ট")
+                .replace("Sep", "সেপ্টেম্বর")
+                .replace("Oct", "অক্টোবর")
+                .replace("Nov", "নভেম্বর")
+                .replace("Dec", "ডিসেম্বর")
+        }
+        AppLanguage.HINDI -> {
+            dateStr
+                .replace("Jan", "जनवरी")
+                .replace("Feb", "फरवरी")
+                .replace("Mar", "मार्च")
+                .replace("Apr", "अप्रैल")
+                .replace("May", "मई")
+                .replace("Jun", "जून")
+                .replace("Jul", "जुलाई")
+                .replace("Aug", "अगस्त")
+                .replace("Sep", "सितंबर")
+                .replace("Oct", "अक्टूबर")
+                .replace("Nov", "नवंबर")
+                .replace("Dec", "दिसंबर")
+        }
+        AppLanguage.ENGLISH -> dateStr
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun JourneyDatePickerDialog(
+    currentLanguage: AppLanguage,
+    onDateSelected: (String) -> Unit,
+    onDismiss: () -> Unit
+) {
+    val datePickerState = rememberDatePickerState(
+        initialSelectedDateMillis = System.currentTimeMillis()
+    )
+
+    DatePickerDialog(
+        onDismissRequest = onDismiss,
+        confirmButton = {
+            TextButton(
+                onClick = {
+                    val selectedMillis = datePickerState.selectedDateMillis
+                    if (selectedMillis != null) {
+                        val cal = Calendar.getInstance(TimeZone.getTimeZone("UTC")).apply {
+                            timeInMillis = selectedMillis
+                        }
+                        val sdf = SimpleDateFormat("dd MMM yyyy", Locale.US).apply {
+                            timeZone = TimeZone.getTimeZone("UTC")
+                        }
+                        onDateSelected(sdf.format(cal.time))
+                    }
+                    onDismiss()
+                },
+                modifier = Modifier.testTag("confirm_journey_date_button")
+            ) {
+                Text(
+                    text = when (currentLanguage) {
+                        AppLanguage.BENGALI -> "নিশ্চিত করুন"
+                        AppLanguage.HINDI -> "पुष्टि करें"
+                        AppLanguage.ENGLISH -> "Confirm"
+                    },
+                    fontWeight = FontWeight.Bold,
+                    color = RailBluePrimary
+                )
+            }
+        },
+        dismissButton = {
+            TextButton(
+                onClick = onDismiss,
+                modifier = Modifier.testTag("dismiss_journey_date_button")
+            ) {
+                Text(
+                    text = when (currentLanguage) {
+                        AppLanguage.BENGALI -> "বাতিল"
+                        AppLanguage.HINDI -> "रद्द करें"
+                        AppLanguage.ENGLISH -> "Cancel"
+                    }
+                )
+            }
+        }
+    ) {
+        DatePicker(state = datePickerState)
     }
 }
