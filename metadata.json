@@ -1,0 +1,6 @@
+{
+  "name": "RailSathi",
+  "description": "ভারতীয় রেল এআই সহায়ক ও ট্রাভেল প্ল্যানার - টিকিট স্প্লিট, পিএনআর প্রেডিকশন এবং লাইভ ট্রেন ট্র্যাকিং (IST) | বাংলা, हिन्दी & English",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
