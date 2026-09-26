@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AddLocation
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Search
@@ -16,9 +17,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.example.data.model.AppLanguage
 import com.example.data.model.Station
+import com.example.data.repository.StationDatabase
 import com.example.ui.theme.RailBluePrimary
 
 @Composable
@@ -42,15 +45,22 @@ fun StationPickerDialog(
                 it.nameEn.lowercase().contains(q) ||
                 it.cityBn.lowercase().contains(q) ||
                 it.cityHi.lowercase().contains(q) ||
-                it.cityEn.lowercase().contains(q)
+                it.cityEn.lowercase().contains(q) ||
+                it.state.lowercase().contains(q)
             }
         }
     }
 
     val placeholderText = when (currentLanguage) {
-        AppLanguage.BENGALI -> "স্টেশনের নাম বা কোড খুঁজুন (যেমন HWH, NDLS)"
-        AppLanguage.HINDI -> "स्टेशन का नाम या कोड खोजें (जैसे HWH, NDLS)"
-        AppLanguage.ENGLISH -> "Search station name or code (e.g. HWH, NDLS)"
+        AppLanguage.BENGALI -> "স্টেশনের নাম বা কোড খুঁজুন (যেমন HWH, NDLS, KOAA...)"
+        AppLanguage.HINDI -> "स्टेशन का नाम या कोड खोजें (जैसे HWH, NDLS, KOAA...)"
+        AppLanguage.ENGLISH -> "Search station name or code (e.g. HWH, NDLS...)"
+    }
+
+    val countLabel = when (currentLanguage) {
+        AppLanguage.BENGALI -> "অল-ইন্ডিয়া মাস্টার ডাটাবেস: ${filteredStations.size} টি স্টেশন"
+        AppLanguage.HINDI -> "अखिल भारतीय मास्टर डेटाबेस: ${filteredStations.size} स्टेशन"
+        AppLanguage.ENGLISH -> "All-India Master Database: ${filteredStations.size} stations"
     }
 
     Dialog(onDismissRequest = onDismiss) {
@@ -60,7 +70,7 @@ fun StationPickerDialog(
             tonalElevation = 6.dp,
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight(0.85f)
+                .fillMaxHeight(0.88f)
                 .testTag("station_picker_dialog")
         ) {
             Column(
@@ -74,13 +84,21 @@ fun StationPickerDialog(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(
-                        text = title,
-                        style = MaterialTheme.typography.titleMedium.copy(
-                            fontWeight = FontWeight.Bold,
-                            color = RailBluePrimary
+                    Column {
+                        Text(
+                            text = title,
+                            style = MaterialTheme.typography.titleMedium.copy(
+                                fontWeight = FontWeight.Bold,
+                                color = RailBluePrimary
+                            )
                         )
-                    )
+                        Text(
+                            text = countLabel,
+                            style = MaterialTheme.typography.labelSmall.copy(
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                            )
+                        )
+                    }
                     IconButton(
                         onClick = onDismiss,
                         modifier = Modifier.testTag("station_picker_close")
@@ -89,15 +107,22 @@ fun StationPickerDialog(
                     }
                 }
 
-                Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(10.dp))
 
                 // Search Box
                 OutlinedTextField(
                     value = searchQuery,
                     onValueChange = { searchQuery = it },
-                    placeholder = { Text(placeholderText) },
+                    placeholder = { Text(placeholderText, fontSize = 13.sp) },
                     leadingIcon = {
                         Icon(imageVector = Icons.Default.Search, contentDescription = "অনুসন্ধান")
+                    },
+                    trailingIcon = {
+                        if (searchQuery.isNotEmpty()) {
+                            IconButton(onClick = { searchQuery = "" }) {
+                                Icon(Icons.Default.Close, contentDescription = "Clear")
+                            }
+                        }
                     },
                     singleLine = true,
                     modifier = Modifier
@@ -106,19 +131,75 @@ fun StationPickerDialog(
                     shape = RoundedCornerShape(12.dp)
                 )
 
-                Spacer(modifier = Modifier.height(12.dp))
+                Spacer(modifier = Modifier.height(10.dp))
 
                 // Station list
                 LazyColumn(
                     modifier = Modifier.weight(1f),
-                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                    verticalArrangement = Arrangement.spacedBy(6.dp)
                 ) {
+                    // If user typed a query that is not directly present, offer custom selection
+                    val cleanQ = searchQuery.trim()
+                    val exactFound = filteredStations.any { it.code.equals(cleanQ, ignoreCase = true) }
+                    if (cleanQ.length >= 2 && !exactFound) {
+                        item {
+                            Card(
+                                colors = CardDefaults.cardColors(
+                                    containerColor = RailBluePrimary.copy(alpha = 0.12f)
+                                ),
+                                shape = RoundedCornerShape(10.dp),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .clickable {
+                                        onSelectStation(StationDatabase.getOrSynthesize(cleanQ))
+                                    }
+                            ) {
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(12.dp),
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.spacedBy(10.dp)
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Default.AddLocation,
+                                        contentDescription = null,
+                                        tint = RailBluePrimary
+                                    )
+                                    Column(modifier = Modifier.weight(1f)) {
+                                        Text(
+                                            text = when (currentLanguage) {
+                                                AppLanguage.BENGALI -> "কাস্টম স্টেশন: ${cleanQ.uppercase()} গ্রহণ করুন"
+                                                AppLanguage.HINDI -> "कस्टम स्टेशन: ${cleanQ.uppercase()} चुनें"
+                                                AppLanguage.ENGLISH -> "Use custom station: ${cleanQ.uppercase()}"
+                                            },
+                                            style = MaterialTheme.typography.bodyMedium.copy(
+                                                fontWeight = FontWeight.Bold,
+                                                color = RailBluePrimary
+                                            )
+                                        )
+                                        Text(
+                                            text = when (currentLanguage) {
+                                                AppLanguage.BENGALI -> "যেকোনো ভারতীয় স্টেশন কোড বা নাম হিসাবে বুকিং করুন"
+                                                AppLanguage.HINDI -> "किसी भी भारतीय रेलवे स्टेशन के रूप में चुनें"
+                                                AppLanguage.ENGLISH -> "Select as custom Indian Railway station"
+                                            },
+                                            style = MaterialTheme.typography.bodySmall.copy(
+                                                color = MaterialTheme.colorScheme.onSurfaceVariant
+                                            )
+                                        )
+                                    }
+                                }
+                            }
+                        }
+                    }
+
                     items(filteredStations) { station ->
                         Card(
                             colors = CardDefaults.cardColors(
                                 containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f)
                             ),
-                            shape = RoundedCornerShape(8.dp),
+                            shape = RoundedCornerShape(10.dp),
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .clickable {
@@ -135,7 +216,8 @@ fun StationPickerDialog(
                             ) {
                                 Row(
                                     verticalAlignment = Alignment.CenterVertically,
-                                    horizontalArrangement = Arrangement.spacedBy(10.dp)
+                                    horizontalArrangement = Arrangement.spacedBy(10.dp),
+                                    modifier = Modifier.weight(1f)
                                 ) {
                                     Icon(
                                         imageVector = Icons.Default.LocationOn,

@@ -24,8 +24,29 @@ export const STATIONS: Station[] = [
   { code: 'BWN', nameBn: 'বর্ধমান জংশন', nameHi: 'बर्द्धमान जंक्शन', nameEn: 'Barddhaman Jn', cityBn: 'বর্ধমান', cityHi: 'बर्द्धमान', cityEn: 'Bardhaman', state: 'West Bengal' },
   { code: 'MLDT', nameBn: 'মালদা টাউন', nameHi: 'मालदा टाउन', nameEn: 'Malda Town', cityBn: 'মালদা', cityHi: 'मालदा', cityEn: 'Malda', state: 'West Bengal' },
   { code: 'NJP', nameBn: 'নিউ জলপাইগুড়ি', nameHi: 'न्यू जलपाईगुड़ी', nameEn: 'New Jalpaiguri', cityBn: 'শিলিগুড়ি', cityHi: 'सिलीगुड़ी', cityEn: 'Siliguri', state: 'West Bengal' },
-  { code: 'BOE', nameBn: 'বারসোই জংশন', nameHi: 'बारसोई जंक्शन', nameEn: 'Barsoi Junction', cityBn: 'বারসোই', cityHi: 'बारसोई', cityEn: 'Barsoi', state: 'Bihar' },
+  { code: 'SGUJ', nameBn: 'শিলিগুড়ি জংশন', nameHi: 'सिलीगुड़ी जंक्शन', nameEn: 'Siliguri Junction', cityBn: 'শিলিগুড়ি', cityHi: 'सिलीगुड़ी', cityEn: 'Siliguri', state: 'West Bengal' },
+  { code: 'RPH', nameBn: 'রামপুরহাট জংশন', nameHi: 'रामपुरहाट जंक्शन', nameEn: 'Rampurhat Jn', cityBn: 'বীরভূম', cityHi: 'बीरभूम', cityEn: 'Birbhum', state: 'West Bengal' },
+  { code: 'BHP', nameBn: 'বোলপুর শান্তিনিকেতন', nameHi: 'बोलपुर शांतिनिकेतन', nameEn: 'Bolpur Shantiniketan', cityBn: 'বোলপুর', cityHi: 'बोलपुर', cityEn: 'Bolpur', state: 'West Bengal' },
   { code: 'NFK', nameBn: 'নিউ ফারাক্কা জংশন', nameHi: 'न्यू फरक्का जंक्शन', nameEn: 'New Farakka Jn', cityBn: 'ফারাক্কা', cityHi: 'फरक्का', cityEn: 'Farakka', state: 'West Bengal' },
+  { code: 'MDN', nameBn: 'মেদিনীপুর', nameHi: 'मेदिनीपुर', nameEn: 'Midnapore', cityBn: 'মেদিনীপুর', cityHi: 'मेदिनीपुर', cityEn: 'Midnapore', state: 'West Bengal' },
+  { code: 'BQA', nameBn: 'বাঁকুড়া জংশন', nameHi: 'बांकुड़ा जंक्शन', nameEn: 'Bankura Junction', cityBn: 'বাঁকুড়া', cityHi: 'बांकुड़ा', cityEn: 'Bankura', state: 'West Bengal' },
+  { code: 'PRR', nameBn: 'পুরুলিয়া জংশন', nameHi: 'पुरुलिया जंक्शन', nameEn: 'Purulia Junction', cityBn: 'পুরুলিয়া', cityHi: 'पुरुलिया', cityEn: 'Purulia', state: 'West Bengal' },
+  { code: 'DGHA', nameBn: 'দিঘা', nameHi: 'दीघा', nameEn: 'Digha Flag Station', cityBn: 'দিঘা', cityHi: 'दीघा', cityEn: 'Digha', state: 'West Bengal' },
+  { code: 'BDC', nameBn: 'ব্যান্ডেল জংশন', nameHi: 'बन्देल जंक्शन', nameEn: 'Bandel Junction', cityBn: 'হুগলি', cityHi: 'हुगली', cityEn: 'Hooghly', state: 'West Bengal' },
+  { code: 'NH', nameBn: 'নৈহাটি জংশন', nameHi: 'नैहाटी जंक्शन', nameEn: 'Naihati Junction', cityBn: 'নৈহাটি', cityHi: 'नैहाटी', cityEn: 'Naihati', state: 'West Bengal' },
+  { code: 'BP', nameBn: 'ব্যারাকপুর', nameHi: 'बैरकपुर', nameEn: 'Barrackpore', cityBn: 'ব্যারাকপুর', cityHi: 'बैरकपुर', cityEn: 'Barrackpore', state: 'West Bengal' },
+  { code: 'RHA', nameBn: 'রানাঘাট জংশন', nameHi: 'रानाघाट जंक्शन', nameEn: 'Ranaghat Junction', cityBn: 'রানাঘাট', cityHi: 'रानाघाट', cityEn: 'Ranaghat', state: 'West Bengal' },
+  { code: 'KNJ', nameBn: 'কৃষ্ণনগর সিটি', nameHi: 'कृष्णनगर सिटी', nameEn: 'Krishnanagar City', cityBn: 'কৃষ্ণনগর', cityHi: 'कृष्णनगर', cityEn: 'Krishnanagar', state: 'West Bengal' },
+  { code: 'AZ', nameBn: 'আজিমগঞ্জ জংশন', nameHi: 'अजीमगंज जंक्शन', nameEn: 'Azimganj Junction', cityBn: 'আজিমগঞ্জ', cityHi: 'अजीमगंज', cityEn: 'Azimganj', state: 'West Bengal' },
+  { code: 'BPC', nameBn: 'বহরমপুর কোর্ট', nameHi: 'बहरमपुर कोर्ट', nameEn: 'Berhampore Court', cityBn: 'বহরমপুর', cityHi: 'बहरमपुर', cityEn: 'Berhampore', state: 'West Bengal' },
+  { code: 'SNT', nameBn: 'সাঁইথিয়া জংশন', nameHi: 'सैंथिया जंक्शन', nameEn: 'Sainthia Junction', cityBn: 'সাঁইথিয়া', cityHi: 'सैंथिया', cityEn: 'Sainthia', state: 'West Bengal' },
+  { code: 'KWAE', nameBn: 'কাটোয়া জংশন', nameHi: 'कटवा जंक्शन', nameEn: 'Katwa Junction', cityBn: 'কাটোয়া', cityHi: 'कटवा', cityEn: 'Katwa', state: 'West Bengal' },
+  { code: 'APDJ', nameBn: 'আলিপুরদুয়ার জংশন', nameHi: 'अलीपुरद्वार जंक्शन', nameEn: 'Alipur Duar Jn', cityBn: 'আলিপুরদুয়ার', cityHi: 'अलीपुरद्वार', cityEn: 'Alipurduar', state: 'West Bengal' },
+  { code: 'NCB', nameBn: 'নিউ কোচবিহার', nameHi: 'न्यू कूचबिहार', nameEn: 'New Cooch Behar', cityBn: 'কোচবিহার', cityHi: 'कूचबिहार', cityEn: 'Cooch Behar', state: 'West Bengal' },
+  { code: 'PKU', nameBn: 'পাঁশকুড়া জংশন', nameHi: 'पांशकुड़ा जंक्शन', nameEn: 'Panskura Junction', cityBn: 'পাঁশকুড়া', cityHi: 'पांशकुड़ा', cityEn: 'Panskura', state: 'West Bengal' },
+  { code: 'TMZ', nameBn: 'তমলুক জংশন', nameHi: 'तमलुक जंक्शन', nameEn: 'Tamluk Junction', cityBn: 'তমলুক', cityHi: 'तमलुक', cityEn: 'Tamluk', state: 'West Bengal' },
+  { code: 'HLZ', nameBn: 'হলদিয়া', nameHi: 'हल्दिया', nameEn: 'Haldia', cityBn: 'হলদিয়া', cityHi: 'हल्दिया', cityEn: 'Haldia', state: 'West Bengal' },
+  { code: 'DKAE', nameBn: 'ডানকুনি জংশন', nameHi: 'डानकुनी जंक्शन', nameEn: 'Dankuni Junction', cityBn: 'ডানকুনি', cityHi: 'डानकुनी', cityEn: 'Dankuni', state: 'West Bengal' },
 
   // Delhi NCR
   { code: 'NDLS', nameBn: 'নতুন দিল্লি', nameHi: 'नई दिल्ली', nameEn: 'New Delhi', cityBn: 'দিল্লি', cityHi: 'दिल्ली', cityEn: 'New Delhi', state: 'Delhi' },
@@ -33,14 +54,19 @@ export const STATIONS: Station[] = [
   { code: 'NZM', nameBn: 'হযরত নিজামুদ্দীন', nameHi: 'हज़रत निज़ामुद्दीन', nameEn: 'Hazrat Nizamuddin', cityBn: 'দিল্লি', cityHi: 'दिल्ली', cityEn: 'Delhi', state: 'Delhi' },
   { code: 'ANVT', nameBn: 'আনন্দ বিহার টার্মিনাল', nameHi: 'आनंद विहार टर्मिनल', nameEn: 'Anand Vihar Terminal', cityBn: 'দিল্লি', cityHi: 'दिल्ली', cityEn: 'Delhi', state: 'Delhi' },
   { code: 'DEE', nameBn: 'দিল্লি সরাই রোহিল্লা', nameHi: 'दिल्ली सराय रोहिल्ला', nameEn: 'Delhi Sarai Rohilla', cityBn: 'দিল্লি', cityHi: 'दिल्ली', cityEn: 'Delhi', state: 'Delhi' },
+  { code: 'DEC', nameBn: 'দিল্লি ক্যান্ট', nameHi: 'दिल्ली कैंट', nameEn: 'Delhi Cantt', cityBn: 'দিল্লি', cityHi: 'दिल्ली', cityEn: 'Delhi', state: 'Delhi' },
   { code: 'GZB', nameBn: 'গাজিয়াবাদ জংশন', nameHi: 'गाज़ियाबाद जंक्शन', nameEn: 'Ghaziabad Jn', cityBn: 'গাজিয়াবাদ', cityHi: 'गाज़ियाबाद', cityEn: 'Ghaziabad', state: 'Uttar Pradesh' },
+  { code: 'FDB', nameBn: 'ফরিদাবাদ', nameHi: 'फ़रीदाबाद', nameEn: 'Faridabad', cityBn: 'ফরিদাবাদ', cityHi: 'फ़रीदाबाद', cityEn: 'Faridabad', state: 'Haryana' },
+  { code: 'GGN', nameBn: 'গুরুগ্রাম (গুরগাঁও)', nameHi: 'गुरुग्राम', nameEn: 'Gurugram (Gurgaon)', cityBn: 'গুরুগ্রাম', cityHi: 'गुरुग्राम', cityEn: 'Gurugram', state: 'Haryana' },
 
   // Uttar Pradesh
   { code: 'DDU', nameBn: 'পণ্ডিত দীনদয়াল উপাধ্যায়', nameHi: 'पं. दीनदयाल उपाध्याय', nameEn: 'Pt. Deen Dayal Upadhyaya Jn', cityBn: 'মুঘলসরাই', cityHi: 'मुगलसराय', cityEn: 'Mughalsarai', state: 'Uttar Pradesh' },
   { code: 'CNB', nameBn: 'কানপুর সেন্ট্রাল', nameHi: 'कानपुर सेंट्रल', nameEn: 'Kanpur Central', cityBn: 'কানপুর', cityHi: 'कानपुर', cityEn: 'Kanpur', state: 'Uttar Pradesh' },
   { code: 'PRYJ', nameBn: 'প্রয়াগরাজ জংশন', nameHi: 'प्रयागराज जंक्शन', nameEn: 'Prayagraj Junction', cityBn: 'প্রয়াগরাজ', cityHi: 'प्रयागराज', cityEn: 'Prayagraj', state: 'Uttar Pradesh' },
+  { code: 'ACOI', nameBn: 'প্রয়াগরাজ ছেওকি', nameHi: 'प्रयागराज छिवकी', nameEn: 'Prayagraj Chheoki', cityBn: 'প্রয়াগরাজ', cityHi: 'प्रयागराज', cityEn: 'Prayagraj', state: 'Uttar Pradesh' },
   { code: 'LKO', nameBn: 'লখনউ চারবাগ', nameHi: 'लखनऊ चारबाग', nameEn: 'Lucknow Charbagh', cityBn: 'লখনউ', cityHi: 'लखनऊ', cityEn: 'Lucknow', state: 'Uttar Pradesh' },
   { code: 'BSB', nameBn: 'বারাণসী জংশন', nameHi: 'वाराणसी जंक्शन', nameEn: 'Varanasi Junction', cityBn: 'বারাণসী', cityHi: 'वाराणसी', cityEn: 'Varanasi', state: 'Uttar Pradesh' },
+  { code: 'BSBS', nameBn: 'বেনারস টার্মিনাল', nameHi: 'बनारस', nameEn: 'Banaras', cityBn: 'বারাণসী', cityHi: 'वाराणसी', cityEn: 'Varanasi', state: 'Uttar Pradesh' },
   { code: 'GKP', nameBn: 'গোরখপুর জংশন', nameHi: 'गोरखपुर जंक्शन', nameEn: 'Gorakhpur Junction', cityBn: 'গোরখপুর', cityHi: 'गोरखपुर', cityEn: 'Gorakhpur', state: 'Uttar Pradesh' },
   { code: 'AGC', nameBn: 'আগ্রা ক্যান্ট', nameHi: 'आगरा कैंट', nameEn: 'Agra Cantt', cityBn: 'আগ্রা', cityHi: 'आगरा', cityEn: 'Agra', state: 'Uttar Pradesh' },
   { code: 'MTJ', nameBn: 'মথুরা জংশন', nameHi: 'मथुरा जंक्शन', nameEn: 'Mathura Junction', cityBn: 'মথুরা', cityHi: 'मथुरा', cityEn: 'Mathura', state: 'Uttar Pradesh' },
@@ -49,6 +75,9 @@ export const STATIONS: Station[] = [
   { code: 'ALJN', nameBn: 'আলীগড় জংশন', nameHi: 'अलीगढ़ जंक्शन', nameEn: 'Aligarh Jn', cityBn: 'আলীগড়', cityHi: 'अलीगढ़', cityEn: 'Aligarh', state: 'Uttar Pradesh' },
   { code: 'VGLJ', nameBn: 'ভিজিএল ঝাঁসি', nameHi: 'वीरांगना लक्ष्मीबाई झाँसी', nameEn: 'VGL Jhansi Jn', cityBn: 'ঝাঁসি', cityHi: 'झाँसी', cityEn: 'Jhansi', state: 'Uttar Pradesh' },
   { code: 'AY', nameBn: 'অযোধ্যা ধাম', nameHi: 'अयोध्या धाम', nameEn: 'Ayodhya Dham Jn', cityBn: 'অযোধ্যা', cityHi: 'अयोध्या', cityEn: 'Ayodhya', state: 'Uttar Pradesh' },
+  { code: 'AYC', nameBn: 'অযোধ্যা ক্যান্ট', nameHi: 'अयोध्या कैंट', nameEn: 'Ayodhya Cantt', cityBn: 'অযোধ্যা', cityHi: 'अयोध्या', cityEn: 'Ayodhya', state: 'Uttar Pradesh' },
+  { code: 'MTC', nameBn: 'মিরাট সিটি', nameHi: 'मेरठ सिटी', nameEn: 'Meerut City', cityBn: 'মিরাট', cityHi: 'मेरठ', cityEn: 'Meerut', state: 'Uttar Pradesh' },
+  { code: 'SRE', nameBn: 'সাহারানপুর জংশন', nameHi: 'सहारनपुर जंक्शन', nameEn: 'Saharanpur Jn', cityBn: 'সাহারানপুর', cityHi: 'सहारनपुर', cityEn: 'Saharanpur', state: 'Uttar Pradesh' },
 
   // Bihar
   { code: 'PNBE', nameBn: 'পাটনা জংশন', nameHi: 'पटना जंक्शन', nameEn: 'Patna Junction', cityBn: 'পাটনা', cityHi: 'पटना', cityEn: 'Patna', state: 'Bihar' },
@@ -60,19 +89,32 @@ export const STATIONS: Station[] = [
   { code: 'BJU', nameBn: 'বরৌনী জংশন', nameHi: 'बरौनी जंक्शन', nameEn: 'Barauni Jn', cityBn: 'বরৌনী', cityHi: 'बरौनी', cityEn: 'Barauni', state: 'Bihar' },
   { code: 'BGP', nameBn: 'ভাগলপুর জংশন', nameHi: 'भागलपुर जंक्शन', nameEn: 'Bhagalpur Jn', cityBn: 'ভাগলপুর', cityHi: 'भागलपुर', cityEn: 'Bhagalpur', state: 'Bihar' },
   { code: 'KIR', nameBn: 'কাটিহার জংশন', nameHi: 'कटिहार जंक्शन', nameEn: 'Katihar Jn', cityBn: 'কাটিহার', cityHi: 'कटिहार', cityEn: 'Katihar', state: 'Bihar' },
+  { code: 'BOE', nameBn: 'বারসোই জংশন', nameHi: 'बारसोई जंक्शन', nameEn: 'Barsoi Junction', cityBn: 'বারসোই', cityHi: 'बारसोई', cityEn: 'Barsoi', state: 'Bihar' },
   { code: 'BXR', nameBn: 'বক্সার', nameHi: 'बक्सर', nameEn: 'Buxar', cityBn: 'বক্সার', cityHi: 'बक्सर', cityEn: 'Buxar', state: 'Bihar' },
+  { code: 'ARA', nameBn: 'আরা জংশন', nameHi: 'आरा जंक्शन', nameEn: 'Ara Junction', cityBn: 'আরা', cityHi: 'आरा', cityEn: 'Ara', state: 'Bihar' },
+  { code: 'SPJ', nameBn: 'সমস্তিপুর জংশন', nameHi: 'समस्तीपुर जंक्शन', nameEn: 'Samastipur Jn', cityBn: 'সমস্তিপুর', cityHi: 'समस्तीपुर', cityEn: 'Samastipur', state: 'Bihar' },
+  { code: 'SHC', nameBn: 'সহরসা জংশন', nameHi: 'सहरसा जंक्शन', nameEn: 'Saharsa Junction', cityBn: 'সহরসা', cityHi: 'सहरसा', cityEn: 'Saharsa', state: 'Bihar' },
+  { code: 'PRNA', nameBn: 'পূর্ণিয়া জংশন', nameHi: 'पूर्णिया जंक्शन', nameEn: 'Purnea Junction', cityBn: 'পূর্ণিয়া', cityHi: 'पूर्णिया', cityEn: 'Purnea', state: 'Bihar' },
+  { code: 'KNE', nameBn: 'কিষাণগঞ্জ', nameHi: 'किशनगंज', nameEn: 'Kishanganj', cityBn: 'কিষাণগঞ্জ', cityHi: 'किशनगंज', cityEn: 'Kishanganj', state: 'Bihar' },
+  { code: 'SSM', nameBn: 'সাসারাম', nameHi: 'सासाराम', nameEn: 'Sasaram', cityBn: 'সাসারাম', cityHi: 'सासाराम', cityEn: 'Sasaram', state: 'Bihar' },
+  { code: 'DOS', nameBn: 'দেহরি অন শোন', nameHi: 'डेहरी ऑन सोन', nameEn: 'Dehri On Sone', cityBn: 'দেহরি', cityHi: 'डेहरी', cityEn: 'Dehri', state: 'Bihar' },
 
   // Maharashtra
   { code: 'CSMT', nameBn: 'মুম্বাই সিএসএমটি', nameHi: 'मुंबई सीएसएमटी', nameEn: 'Mumbai CSMT', cityBn: 'মুম্বাই', cityHi: 'मुंबई', cityEn: 'Mumbai', state: 'Maharashtra' },
   { code: 'MMCT', nameBn: 'মুম্বাই সেন্ট্রাল', nameHi: 'मुंबई सेंट्रल', nameEn: 'Mumbai Central', cityBn: 'মুম্বাই', cityHi: 'मुंबई', cityEn: 'Mumbai', state: 'Maharashtra' },
   { code: 'BDTS', nameBn: 'বান্দ্রা টার্মিনাস', nameHi: 'बांद्रा टर्मिनस', nameEn: 'Bandra Terminus', cityBn: 'মুম্বাই', cityHi: 'मुंबई', cityEn: 'Mumbai', state: 'Maharashtra' },
   { code: 'LTT', nameBn: 'লোকমান্য তিলক টার্মিনাস', nameHi: 'लोकमान्य तिलक टर्मिनस', nameEn: 'Lokmanya Tilak (LTT)', cityBn: 'মুম্বাই', cityHi: 'मुंबई', cityEn: 'Mumbai', state: 'Maharashtra' },
+  { code: 'TNA', nameBn: 'থানে', nameHi: 'ठाणे', nameEn: 'Thane', cityBn: 'থানে', cityHi: 'ठाणे', cityEn: 'Thane', state: 'Maharashtra' },
+  { code: 'KYN', nameBn: 'কল্যাণ জংশন', nameHi: 'कल्याण जंक्शन', nameEn: 'Kalyan Junction', cityBn: 'কল্যাণ', cityHi: 'कल्याण', cityEn: 'Kalyan', state: 'Maharashtra' },
+  { code: 'PNVL', nameBn: 'পানভেল', nameHi: 'पनवेल', nameEn: 'Panvel', cityBn: 'পানভেল', cityHi: 'पनवेल', cityEn: 'Panvel', state: 'Maharashtra' },
   { code: 'PUNE', nameBn: 'পুনে জংশন', nameHi: 'पुणे जंक्शन', nameEn: 'Pune Junction', cityBn: 'পুনে', cityHi: 'पुणे', cityEn: 'Pune', state: 'Maharashtra' },
   { code: 'NGP', nameBn: 'নাগপুর জংশন', nameHi: 'नागपुर जंक्शन', nameEn: 'Nagpur Junction', cityBn: 'নাগপুর', cityHi: 'नागपुर', cityEn: 'Nagpur', state: 'Maharashtra' },
   { code: 'BSL', nameBn: 'ভুসাবল জংশন', nameHi: 'भुसावल जंक्शन', nameEn: 'Bhusaval Jn', cityBn: 'ভুসাবল', cityHi: 'भुसावल', cityEn: 'Bhusawal', state: 'Maharashtra' },
   { code: 'SUR', nameBn: 'সোলাপুর', nameHi: 'सोलापुर', nameEn: 'Solapur', cityBn: 'সোলাপুর', cityHi: 'सोलापुर', cityEn: 'Solapur', state: 'Maharashtra' },
   { code: 'NK', nameBn: 'নাসিক রোড', nameHi: 'नासिक रोड', nameEn: 'Nashik Road', cityBn: 'নাসিক', cityHi: 'नासिक', cityEn: 'Nashik', state: 'Maharashtra' },
   { code: 'MMR', nameBn: 'মনমাদ জংশন', nameHi: 'मनमाड जंक्शन', nameEn: 'Manmad Jn', cityBn: 'মনমাদ', cityHi: 'मनमाड', cityEn: 'Manmad', state: 'Maharashtra' },
+  { code: 'AWB', nameBn: 'ছত্রপতি সম্ভাজিনগর (ঔরঙ্গাবাদ)', nameHi: 'छत्रपति संभाजीनगर', nameEn: 'Chhatrapati Sambhajinagar', cityBn: 'ঔরঙ্গাবাদ', cityHi: 'औरंगाबाद', cityEn: 'Aurangabad', state: 'Maharashtra' },
+  { code: 'KOP', nameBn: 'কোলহাপুর', nameHi: 'कोल्हापुर', nameEn: 'Kolhapur SCSMT', cityBn: 'কোলহাপুর', cityHi: 'कोल्हापुर', cityEn: 'Kolhapur', state: 'Maharashtra' },
 
   // Odisha
   { code: 'PURI', nameBn: 'পুরী', nameHi: 'पुरी', nameEn: 'Puri', cityBn: 'পুরী', cityHi: 'पुरी', cityEn: 'Puri', state: 'Odisha' },
@@ -81,6 +123,8 @@ export const STATIONS: Station[] = [
   { code: 'ROU', nameBn: 'রাউরকেল্লা', nameHi: 'राउरकेला', nameEn: 'Rourkela Jn', cityBn: 'রাউরকেল্লা', cityHi: 'राउरकेला', cityEn: 'Rourkela', state: 'Odisha' },
   { code: 'SBP', nameBn: 'সম্বলপুর', nameHi: 'संबलपुर', nameEn: 'Sambalpur Jn', cityBn: 'সম্বলপুর', cityHi: 'संबलपुर', cityEn: 'Sambalpur', state: 'Odisha' },
   { code: 'BLS', nameBn: 'বালেশ্বর', nameHi: 'बालेश्वर', nameEn: 'Balasore', cityBn: 'বালেশ্বর', cityHi: 'बालेश्वर', cityEn: 'Balasore', state: 'Odisha' },
+  { code: 'BAM', nameBn: 'ব্রহ্মপুর', nameHi: 'ब्रह्मपुर', nameEn: 'Brahmapur', cityBn: 'ব্রহ্মপুর', cityHi: 'ब्रह्मपुर', cityEn: 'Berhampur', state: 'Odisha' },
+  { code: 'BHC', nameBn: 'ভদ্রক', nameHi: 'भद्रक', nameEn: 'Bhadrak', cityBn: 'ভদ্রক', cityHi: 'भद्रक', cityEn: 'Bhadrak', state: 'Odisha' },
 
   // Jharkhand
   { code: 'RNC', nameBn: 'রাঁচি জংশন', nameHi: 'रांची जंक्शन', nameEn: 'Ranchi Junction', cityBn: 'রাঁচি', cityHi: 'रांची', cityEn: 'Ranchi', state: 'Jharkhand' },
@@ -88,6 +132,9 @@ export const STATIONS: Station[] = [
   { code: 'TATA', nameBn: 'টাটানগর জংশন', nameHi: 'टाटानगर जंक्शन', nameEn: 'Tatanagar Junction', cityBn: 'জামশেদপুর', cityHi: 'जमशेदपुर', cityEn: 'Jamshedpur', state: 'Jharkhand' },
   { code: 'BKSC', nameBn: 'বোকারো স্টিল সিটি', nameHi: 'बोकारो स्टील सिटी', nameEn: 'Bokaro Steel City', cityBn: 'বোকারো', cityHi: 'बोकारो', cityEn: 'Bokaro', state: 'Jharkhand' },
   { code: 'JSME', nameBn: 'জসিডি জংশন (দেওঘর)', nameHi: 'जसीडीह जंक्शन', nameEn: 'Jasidih Jn (Deoghar)', cityBn: 'দেওঘর', cityHi: 'देवघर', cityEn: 'Deoghar', state: 'Jharkhand' },
+  { code: 'KQR', nameBn: 'কোডার্মা জংশন', nameHi: 'कोडरमा जंक्शन', nameEn: 'Koderma Junction', cityBn: 'কোডার্মা', cityHi: 'कोडरमा', cityEn: 'Koderma', state: 'Jharkhand' },
+  { code: 'MDP', nameBn: 'মধুপুুর জংশন', nameHi: 'मधुपुर जंक्शन', nameEn: 'Madhupur Junction', cityBn: 'মধুপুুর', cityHi: 'मधुपुर', cityEn: 'Madhupur', state: 'Jharkhand' },
+  { code: 'SBG', nameBn: 'সাহেবগঞ্জ', nameHi: 'साहिबगंज', nameEn: 'Sahibganj', cityBn: 'সাহেবগঞ্জ', cityHi: 'साहिबगंज', cityEn: 'Sahibganj', state: 'Jharkhand' },
 
   // Gujarat
   { code: 'ADI', nameBn: 'আহমেদাবাদ জংশন', nameHi: 'अहमदाबाद जंक्शन', nameEn: 'Ahmedabad Junction', cityBn: 'আহমেদাবাদ', cityHi: 'अहमदाबाद', cityEn: 'Ahmedabad', state: 'Gujarat' },
@@ -95,6 +142,8 @@ export const STATIONS: Station[] = [
   { code: 'ST', nameBn: 'সুরাট', nameHi: 'सूरत', nameEn: 'Surat', cityBn: 'সুরাট', cityHi: 'सूरत', cityEn: 'Surat', state: 'Gujarat' },
   { code: 'RJT', nameBn: 'রাজকোট জংশন', nameHi: 'राजकोट जंक्शन', nameEn: 'Rajkot Jn', cityBn: 'রাজকোট', cityHi: 'राजकोट', cityEn: 'Rajkot', state: 'Gujarat' },
   { code: 'DWK', nameBn: 'দ্বারকা', nameHi: 'द्वारका', nameEn: 'Dwarka', cityBn: 'দ্বারকা', cityHi: 'द्वारका', cityEn: 'Dwarka', state: 'Gujarat' },
+  { code: 'BHUJ', nameBn: 'ভুজ', nameHi: 'भुज', nameEn: 'Bhuj', cityBn: 'ভুজ', cityHi: 'भुज', cityEn: 'Bhuj', state: 'Gujarat' },
+  { code: 'JAM', nameBn: 'জামনগর', nameHi: 'जामनगर', nameEn: 'Jamnagar', cityBn: 'জামনগর', cityHi: 'जामनगर', cityEn: 'Jamnagar', state: 'Gujarat' },
 
   // Rajasthan
   { code: 'JP', nameBn: 'জয়পুর জংশন', nameHi: 'जयपुर जंक्शन', nameEn: 'Jaipur Junction', cityBn: 'জয়পুর', cityHi: 'जयपुर', cityEn: 'Jaipur', state: 'Rajasthan' },
@@ -108,72 +157,101 @@ export const STATIONS: Station[] = [
   { code: 'SBC', nameBn: 'কেএসআর বেঙ্গালুরু', nameHi: 'केएसआर बेंगलुरु', nameEn: 'KSR Bengaluru City', cityBn: 'বেঙ্গালুরু', cityHi: 'बेंगलुरु', cityEn: 'Bengaluru', state: 'Karnataka' },
   { code: 'SMVB', nameBn: 'এসএমভিটি বেঙ্গালুরু', nameHi: 'सर एम. विश्वेश्वरैया बेंगलुरु', nameEn: 'SMVT Bengaluru', cityBn: 'বেঙ্গালুরু', cityHi: 'बेंगलुरु', cityEn: 'Bengaluru', state: 'Karnataka' },
   { code: 'YPR', nameBn: 'যশবন্তপুর জংশন', nameHi: 'यशवंतपुर जंक्शन', nameEn: 'Yesvantpur Junction', cityBn: 'বেঙ্গালুরু', cityHi: 'बेंगलुरु', cityEn: 'Bengaluru', state: 'Karnataka' },
+  { code: 'BNC', nameBn: 'বেঙ্গালুরু ক্যান্ট', nameHi: 'बेंगलुरु कैंट', nameEn: 'Bengaluru Cantt', cityBn: 'বেঙ্গালুরু', cityHi: 'बेंगलुरु', cityEn: 'Bengaluru', state: 'Karnataka' },
   { code: 'MYS', nameBn: 'মহীশূর জংশন', nameHi: 'मैसूर जंक्शन', nameEn: 'Mysuru Junction', cityBn: 'মহীশূর', cityHi: 'मैसूर', cityEn: 'Mysuru', state: 'Karnataka' },
   { code: 'UBL', nameBn: 'হুবলি জংশন', nameHi: 'हुबली जंक्शन', nameEn: 'SSS Hubballi Jn', cityBn: 'হুবলি', cityHi: 'हुबली', cityEn: 'Hubli', state: 'Karnataka' },
   { code: 'MAQ', nameBn: 'ম্যাঙ্গালোর সেন্ট্রাল', nameHi: 'मंगलौर सेंट्रल', nameEn: 'Mangaluru Central', cityBn: 'ম্যাঙ্গালোর', cityHi: 'मंगलौर', cityEn: 'Mangalore', state: 'Karnataka' },
+  { code: 'BGM', nameBn: 'বেলগাভি', nameHi: 'बेलगावी', nameEn: 'Belagavi', cityBn: 'বেলগাভি', cityHi: 'बेलगावी', cityEn: 'Belgaum', state: 'Karnataka' },
 
   // Tamil Nadu
   { code: 'MAS', nameBn: 'চেন্নাই সেন্ট্রাল', nameHi: 'चेन्नई सेंट्रल', nameEn: 'Chennai Central', cityBn: 'চেন্নাই', cityHi: 'चेन्नई', cityEn: 'Chennai', state: 'Tamil Nadu' },
   { code: 'MS', nameBn: 'চেন্নাই এগমোর', nameHi: 'चेन्नई एग्मोर', nameEn: 'Chennai Egmore', cityBn: 'চেন্নাই', cityHi: 'चेन्नई', cityEn: 'Chennai', state: 'Tamil Nadu' },
+  { code: 'TBM', nameBn: 'তাম্বারাম', nameHi: 'ताम्बरम', nameEn: 'Tambaram', cityBn: 'চেন্নাই', cityHi: 'चेन्नई', cityEn: 'Chennai', state: 'Tamil Nadu' },
   { code: 'CBE', nameBn: 'কোয়েম্বাটোর জংশন', nameHi: 'कोयंबटूर जंक्शन', nameEn: 'Coimbatore Jn', cityBn: 'কোয়েম্বাটোর', cityHi: 'कोयंबटूर', cityEn: 'Coimbatore', state: 'Tamil Nadu' },
   { code: 'MDU', nameBn: 'মাদুরাই জংশন', nameHi: 'मदुरै जंक्शन', nameEn: 'Madurai Junction', cityBn: 'মাদুরাই', cityHi: 'मदुरै', cityEn: 'Madurai', state: 'Tamil Nadu' },
+  { code: 'TPJ', nameBn: 'তিরুচিরাপল্লী জংশন', nameHi: 'तिरुचिरापल्ली जंक्शन', nameEn: 'Tiruchchirappalli Jn', cityBn: 'তিরুচিরাপল্লী', cityHi: 'तिरुचिरापल्ली', cityEn: 'Trichy', state: 'Tamil Nadu' },
+  { code: 'SA', nameBn: 'সালেম জংশন', nameHi: 'सेलम जंक्शन', nameEn: 'Salem Junction', cityBn: 'সালেম', cityHi: 'सेलम', cityEn: 'Salem', state: 'Tamil Nadu' },
   { code: 'CAPE', nameBn: 'কন্যাকুমারী', nameHi: 'कन्याकुमारी', nameEn: 'Kanyakumari', cityBn: 'কন্যাকুমারী', cityHi: 'कन्याकुमारी', cityEn: 'Kanyakumari', state: 'Tamil Nadu' },
   { code: 'RMM', nameBn: 'রামেশ্বরম', nameHi: 'रामेश्वरम', nameEn: 'Rameswaram', cityBn: 'রামেশ্বরম', cityHi: 'रामेश्वरम', cityEn: 'Rameswaram', state: 'Tamil Nadu' },
+  { code: 'TEN', nameBn: 'তিরুনেলভেলি', nameHi: 'तिरुनेलवेली', nameEn: 'Tirunelveli', cityBn: 'তিরুনেলভেলি', cityHi: 'तिरुनेलवेली', cityEn: 'Tirunelveli', state: 'Tamil Nadu' },
 
-  // Telangana & Andhra Pradesh
-  { code: 'SC', nameBn: 'সেকেন্দ্রাবাদ জংশন', nameHi: 'सिकंदराबाद जंक्शन', nameEn: 'Secunderabad Junction', cityBn: 'হায়দ্রাবাদ', cityHi: 'हैदराबाद', cityEn: 'Hyderabad', state: 'Telangana' },
+  // Andhra Pradesh & Telangana
+  { code: 'SC', nameBn: 'সেকেন্দ্রাবাদ জংশন', nameHi: 'सिकंदराबाद जंक्शन', nameEn: 'Secunderabad Jn', cityBn: 'হায়দ্রাবাদ', cityHi: 'हैदराबाद', cityEn: 'Hyderabad', state: 'Telangana' },
   { code: 'HYB', nameBn: 'হায়দ্রাবাদ ডেকান', nameHi: 'हैदराबाद डेक्कन', nameEn: 'Hyderabad Deccan', cityBn: 'হায়দ্রাবাদ', cityHi: 'हैदराबाद', cityEn: 'Hyderabad', state: 'Telangana' },
+  { code: 'KZJ', nameBn: 'কাজীপেট জংশন', nameHi: 'काज़ीपेट जंक्शन', nameEn: 'Kazipet Junction', cityBn: 'কাজীপেট', cityHi: 'काज़ीपेट', cityEn: 'Kazipet', state: 'Telangana' },
+  { code: 'WL', nameBn: 'ওয়ারাঙ্গল', nameHi: 'वारंगल', nameEn: 'Warangal', cityBn: 'ওয়ারাঙ্গল', cityHi: 'वारंगल', cityEn: 'Warangal', state: 'Telangana' },
   { code: 'BZA', nameBn: 'বিজয়ওয়াড়া জংশন', nameHi: 'विजयवाड़ा जंक्शन', nameEn: 'Vijayawada Junction', cityBn: 'বিজয়ওয়াড়া', cityHi: 'विजयवाड़ा', cityEn: 'Vijayawada', state: 'Andhra Pradesh' },
   { code: 'VSKP', nameBn: 'বিশাখাপত্তনম জংশন', nameHi: 'विशाखापट्टनम जंक्शन', nameEn: 'Visakhapatnam Junction', cityBn: 'বিশাখাপত্তনম', cityHi: 'विशाखापट्टनम', cityEn: 'Visakhapatnam', state: 'Andhra Pradesh' },
   { code: 'TPTY', nameBn: 'তিরুপতি', nameHi: 'तिरुपति', nameEn: 'Tirupati', cityBn: 'তিরুপতি', cityHi: 'तिरुपति', cityEn: 'Tirupati', state: 'Andhra Pradesh' },
+  { code: 'RJY', nameBn: 'রাজামুন্দ্রি', nameHi: 'राजमुंदरी', nameEn: 'Rajahmundry', cityBn: 'রাজামুন্দ্রি', cityHi: 'राजमुंदरी', cityEn: 'Rajahmundry', state: 'Andhra Pradesh' },
+  { code: 'GNT', nameBn: 'গুন্টুর জংশন', nameHi: 'गुंटूर जंक्शन', nameEn: 'Guntur Junction', cityBn: 'গুন্টুর', cityHi: 'गुंटूर', cityEn: 'Guntur', state: 'Andhra Pradesh' },
 
   // Kerala
   { code: 'TVC', nameBn: 'তিরুবনন্তপুরম সেন্ট্রাল', nameHi: 'तिरुवनंतपुरम सेंट्रल', nameEn: 'Thiruvananthapuram Central', cityBn: 'ত্রিবান্দ্রম', cityHi: 'त्रिवेंद्रम', cityEn: 'Trivandrum', state: 'Kerala' },
   { code: 'ERS', nameBn: 'এর্নাকুলাম জংশন (কোচি)', nameHi: 'एर्नाकुलम जंक्शन (कोच्चि)', nameEn: 'Ernakulam Jn (Kochi)', cityBn: 'কোচি', cityHi: 'कोच्चि', cityEn: 'Kochi', state: 'Kerala' },
-  { code: 'CLT', nameBn: 'কোজিকোড (কালিকট)', nameHi: 'कोझिकोड (कालीकट)', nameEn: 'Kozhikode (Calicut)', cityBn: 'ক্যালিকাট', cityHi: 'कालीकट', cityEn: 'Calicut', state: 'Kerala' },
+  { code: 'CLT', nameBn: 'কোজিকোড (কালিকট)', nameHi: 'कोझिकोड (कालीकट)', nameEn: 'Kozhikode (Calicut)', cityBn: 'কালিকট', cityHi: 'कालीकट', cityEn: 'Calicut', state: 'Kerala' },
+  { code: 'TCR', nameBn: 'ত্রিশূর', nameHi: 'त्रिशूर', nameEn: 'Thrissur', cityBn: 'ত্রিশূর', cityHi: 'त्रिशूर', cityEn: 'Thrissur', state: 'Kerala' },
+  { code: 'QLN', nameBn: 'কোল্লাম জংশন', nameHi: 'कोल्लम जंक्शन', nameEn: 'Kollam Junction', cityBn: 'কোল্লাম', cityHi: 'कोल्लम', cityEn: 'Kollam', state: 'Kerala' },
+  { code: 'ALLP', nameBn: 'আলাপ্পুঝা (আলেপ্পি)', nameHi: 'अलाप्पुझा', nameEn: 'Alappuzha', cityBn: 'আলাপ্পুঝা', cityHi: 'अलाप्पुझा', cityEn: 'Alappuzha', state: 'Kerala' },
+  { code: 'CAN', nameBn: 'কান্নুর', nameHi: 'कन्नूर', nameEn: 'Kannur', cityBn: 'কান্নুর', cityHi: 'कन्नूर', cityEn: 'Kannur', state: 'Kerala' },
 
   // Madhya Pradesh
   { code: 'BPL', nameBn: 'ভোপাল জংশন', nameHi: 'भोपाल जंक्शन', nameEn: 'Bhopal Junction', cityBn: 'ভোপাল', cityHi: 'भोपाल', cityEn: 'Bhopal', state: 'Madhya Pradesh' },
-  { code: 'RKMP', nameBn: 'রানী কমলাপতি (হাবিবগঞ্জ)', nameHi: 'रानी कमलापति', nameEn: 'Rani Kamlapati', cityBn: 'ভোপাল', cityHi: 'भोपाल', cityEn: 'Bhopal', state: 'Madhya Pradesh' },
+  { code: 'RKMP', nameBn: 'রানী কমলাপতি', nameHi: 'रानी कमलापति', nameEn: 'Rani Kamlapati', cityBn: 'ভোপাল', cityHi: 'भोपाल', cityEn: 'Bhopal', state: 'Madhya Pradesh' },
   { code: 'INDB', nameBn: 'ইন্দোর জংশন', nameHi: 'इंदौर जंक्शन', nameEn: 'Indore Junction', cityBn: 'ইন্দোর', cityHi: 'इंदौर', cityEn: 'Indore', state: 'Madhya Pradesh' },
   { code: 'GWL', nameBn: 'গোয়ালিয়র জংশন', nameHi: 'ग्वालियर जंक्शन', nameEn: 'Gwalior Junction', cityBn: 'গোয়ালিয়র', cityHi: 'ग्वालियर', cityEn: 'Gwalior', state: 'Madhya Pradesh' },
   { code: 'JBP', nameBn: 'জবলপুর জংশন', nameHi: 'जबलपुर जंक्शन', nameEn: 'Jabalpur Junction', cityBn: 'জবলপুর', cityHi: 'जबलपुर', cityEn: 'Jabalpur', state: 'Madhya Pradesh' },
   { code: 'UJN', nameBn: 'উজ্জয়িনী জংশন', nameHi: 'उज्जैन जंक्शन', nameEn: 'Ujjain Junction', cityBn: 'উজ্জয়িনী', cityHi: 'उज्जैन', cityEn: 'Ujjain', state: 'Madhya Pradesh' },
+  { code: 'BINA', nameBn: 'বিনা জংশন', nameHi: 'बीना जंक्शन', nameEn: 'Bina Junction', cityBn: 'বিনা', cityHi: 'बीना', cityEn: 'Bina', state: 'Madhya Pradesh' },
+  { code: 'ET', nameBn: 'ইটারসি জংশন', nameHi: 'इटारसी जंक्शन', nameEn: 'Itarsi Junction', cityBn: 'ইটারসি', cityHi: 'इटारसी', cityEn: 'Itarsi', state: 'Madhya Pradesh' },
+  { code: 'KNW', nameBn: 'খান্ডওয়া', nameHi: 'खंडवा', nameEn: 'Khandwa', cityBn: 'খান্ডওয়া', cityHi: 'खंडवा', cityEn: 'Khandwa', state: 'Madhya Pradesh' },
 
-  // Punjab, Haryana, Himachal, J&K
+  // Punjab, Haryana & North
   { code: 'ASR', nameBn: 'অমৃতসর জংশন', nameHi: 'अमृतसर जंक्शन', nameEn: 'Amritsar Junction', cityBn: 'অমৃতসর', cityHi: 'अमृतसर', cityEn: 'Amritsar', state: 'Punjab' },
   { code: 'LDH', nameBn: 'লুধিয়ানা জংশন', nameHi: 'लुधियाना जंक्शन', nameEn: 'Ludhiana Junction', cityBn: 'লুধিয়ানা', cityHi: 'लुधियाना', cityEn: 'Ludhiana', state: 'Punjab' },
+  { code: 'JUC', nameBn: 'জলন্ধর সিটি', nameHi: 'जालंधर सिटी', nameEn: 'Jalandhar City', cityBn: 'জলন্ধর', cityHi: 'जालंधर', cityEn: 'Jalandhar', state: 'Punjab' },
+  { code: 'PTK', nameBn: 'পাঠানকোট জংশন', nameHi: 'पठानकोट जंक्शन', nameEn: 'Pathankot Junction', cityBn: 'পাঠানকোট', cityHi: 'पठानकोट', cityEn: 'Pathankot', state: 'Punjab' },
   { code: 'CDG', nameBn: 'চণ্ডীগড় জংশন', nameHi: 'चंडीगढ़ जंक्शन', nameEn: 'Chandigarh Junction', cityBn: 'চণ্ডীগড়', cityHi: 'चंडीगढ़', cityEn: 'Chandigarh', state: 'Chandigarh' },
   { code: 'UMB', nameBn: 'আম্বালা ক্যান্ট', nameHi: 'अंबाला कैंट', nameEn: 'Ambala Cantt', cityBn: 'আম্বালা', cityHi: 'अंबाला', cityEn: 'Ambala', state: 'Haryana' },
+  { code: 'KLK', nameBn: 'কালকা', nameHi: 'कालका', nameEn: 'Kalka', cityBn: 'কালকা', cityHi: 'कालका', cityEn: 'Kalka', state: 'Haryana' },
+
+  // Jammu & Kashmir & Uttarakhand
   { code: 'JAT', nameBn: 'জম্মু তাওয়াই', nameHi: 'जम्मू तवी', nameEn: 'Jammu Tawi', cityBn: 'জম্মু', cityHi: 'जम्मू', cityEn: 'Jammu', state: 'Jammu and Kashmir' },
   { code: 'SVDK', nameBn: 'শ্রী মাতা বৈষ্ণোদেবী কাটরা', nameHi: 'श्री माता वैष्णो देवी कटरा', nameEn: 'SMVD Katra', cityBn: 'কাটরা', cityHi: 'कटरा', cityEn: 'Katra', state: 'Jammu and Kashmir' },
   { code: 'HW', nameBn: 'হরিদ্বার', nameHi: 'हरिद्वार', nameEn: 'Haridwar', cityBn: 'হরিদ্বার', cityHi: 'हरिद्वार', cityEn: 'Haridwar', state: 'Uttarakhand' },
   { code: 'DDN', nameBn: 'দেরাদুন', nameHi: 'देहरादून', nameEn: 'Dehradun', cityBn: 'দেরাদুন', cityHi: 'देहरादून', cityEn: 'Dehradun', state: 'Uttarakhand' },
+  { code: 'YNRK', nameBn: 'যোগ নগরী ঋষিকেশ', nameHi: 'योग नगरी ऋषिकेश', nameEn: 'Yog Nagari Rishikesh', cityBn: 'ঋষিকেশ', cityHi: 'ऋषिकेश', cityEn: 'Rishikesh', state: 'Uttarakhand' },
 
   // Assam & Northeast
   { code: 'GHY', nameBn: 'গুয়াহাটি', nameHi: 'गुवाहाटी', nameEn: 'Guwahati', cityBn: 'গুয়াহাটি', cityHi: 'गुवाहाटी', cityEn: 'Guwahati', state: 'Assam' },
   { code: 'KYQ', nameBn: 'কামাখ্যা জংশন', nameHi: 'कामाख्या जंक्शन', nameEn: 'Kamakhya Junction', cityBn: 'গুয়াহাটি', cityHi: 'गुवाहाटी', cityEn: 'Guwahati', state: 'Assam' },
   { code: 'DBRG', nameBn: 'ডিব্রুগড়', nameHi: 'डिब्रूगढ़', nameEn: 'Dibrugarh', cityBn: 'ডিব্রুগড়', cityHi: 'डिब्रूगढ़', cityEn: 'Dibrugarh', state: 'Assam' },
+  { code: 'SCL', nameBn: 'শিলচর', nameHi: 'सिलचर', nameEn: 'Silchar', cityBn: 'শিলচর', cityHi: 'सिलचर', cityEn: 'Silchar', state: 'Assam' },
   { code: 'AGTL', nameBn: 'আগরতলা', nameHi: 'अगरतला', nameEn: 'Agartala', cityBn: 'আগরতলা', cityHi: 'अगरतला', cityEn: 'Agartala', state: 'Tripura' },
+  { code: 'DMV', nameBn: 'দিমাপুর', nameHi: 'दीमापुर', nameEn: 'Dimapur', cityBn: 'দিমাপুর', cityHi: 'दीमापुर', cityEn: 'Dimapur', state: 'Nagaland' },
 
   // Goa & Chhattisgarh
   { code: 'MAO', nameBn: 'মাডগাঁও জংশন (গোয়া)', nameHi: 'मडगाँव जंक्शन (गोवा)', nameEn: 'Madgaon Jn (Goa)', cityBn: 'গোয়া', cityHi: 'गोवा', cityEn: 'Goa', state: 'Goa' },
   { code: 'R', nameBn: 'রায়পুর জংশন', nameHi: 'रायपुर जंक्शन', nameEn: 'Raipur Junction', cityBn: 'রায়পুর', cityHi: 'रायपुर', cityEn: 'Raipur', state: 'Chhattisgarh' },
-  { code: 'BSP', nameBn: 'বিলাসপুর জংশন', nameHi: 'बिलासपुर जंक्शन', nameEn: 'Bilaspur Junction', cityBn: 'বিলাসপুর', cityHi: 'बिलासपुर', cityEn: 'Bilaspur', state: 'Chhattisgarh' }
+  { code: 'BSP', nameBn: 'বিলাসপুর জংশন', nameHi: 'बिलासपुर जंक्शन', nameEn: 'Bilaspur Junction', cityBn: 'বিলাসপুর', cityHi: 'बिलासपुर', cityEn: 'Bilaspur', state: 'Chhattisgarh' },
+  { code: 'DURG', nameBn: 'দুর্গ জংশন', nameHi: 'दुर्ग जंक्शन', nameEn: 'Durg Junction', cityBn: 'দুর্গ', cityHi: 'दुर्ग', cityEn: 'Durg', state: 'Chhattisgarh' }
 ];
 
 export function getStation(code: string): Station {
-  const found = STATIONS.find(s => s.code.toLowerCase() === code.toLowerCase());
+  const clean = code.trim().toUpperCase();
+  const found = STATIONS.find(s => s.code.toUpperCase() === clean);
   if (found) return found;
+
+  // Synthesize custom station so any IRCTC station code in India works seamlessly
   return {
-    code: code.toUpperCase(),
-    nameBn: `${code.toUpperCase()} স্টেশন`,
-    nameHi: `${code.toUpperCase()} स्टेशन`,
-    nameEn: `${code.toUpperCase()} Station`,
-    cityBn: code.toUpperCase(),
-    cityHi: code.toUpperCase(),
-    cityEn: code.toUpperCase(),
-    state: 'India'
+    code: clean,
+    nameBn: `${clean} জংশন`,
+    nameHi: `${clean} जंक्शन`,
+    nameEn: `${clean} Junction`,
+    cityBn: clean,
+    cityHi: clean,
+    cityEn: clean,
+    state: 'India (IRCTC)'
   };
 }
 
@@ -301,7 +379,10 @@ export function generateSplitTicketsForRoute(srcCode: string, dstCode: string, l
   else if (srcCode === 'NDLS' && (dstCode === 'CSMT' || dstCode === 'PUNE')) intermediateCode = 'BPL';
   else if (srcCode === 'HWH' && dstCode === 'MAS') intermediateCode = 'BBS';
   else if (srcCode === 'HWH' && dstCode === 'NJP') intermediateCode = 'MLDT';
-  else if (srcCode === intermediateCode || dstCode === intermediateCode) intermediateCode = 'CNB';
+  else {
+    const candidates = ['DDU', 'KGP', 'CNB', 'BPL', 'BBS', 'ET', 'BZA', 'ASN', 'PRYJ', 'NGP'];
+    intermediateCode = candidates.find(c => c !== srcCode && c !== dstCode) || 'CNB';
+  }
 
   const mid = getStation(intermediateCode);
   const midName = lang === 'bn' ? mid.nameBn : lang === 'hi' ? mid.nameHi : mid.nameEn;
@@ -343,3 +424,123 @@ export function generateSplitTicketsForRoute(srcCode: string, dstCode: string, l
     }
   ];
 }
+
+export const TRAINS_SAMPLE = [
+  {
+    number: '12301',
+    nameBn: 'হাওড়া - নতুন দিল্লি রাজধানী এক্সপ্রেস',
+    nameHi: 'हावड़ा - नई दिल्ली राजधानी एक्सप्रेस',
+    nameEn: 'Howrah - New Delhi Rajdhani Express',
+    type: 'Rajdhani Express',
+    dep: '04:50 PM IST',
+    arr: '10:05 AM IST',
+    duration: '17 hrs 15 mins',
+    classes: [
+      { code: '1A', status: 'WL 8', available: false, fare: 4850 },
+      { code: '2A', status: 'WL 28', available: false, fare: 2890 },
+      { code: '3A', status: 'WL 74', available: false, fare: 2040 }
+    ]
+  },
+  {
+    number: '12313',
+    nameBn: 'শিয়ালদহ - নতুন দিল্লি রাজধানী এক্সপ্রেস',
+    nameHi: 'सियालदह - नई दिल्ली राजधानी एक्सप्रेस',
+    nameEn: 'Sealdah - New Delhi Rajdhani Express',
+    type: 'Rajdhani Express',
+    dep: '04:50 PM IST',
+    arr: '10:50 AM IST',
+    duration: '18 hrs 00 mins',
+    classes: [
+      { code: '1A', status: 'AVAILABLE 2', available: true, fare: 4850 },
+      { code: '2A', status: 'WL 14', available: false, fare: 2890 },
+      { code: '3A', status: 'WL 52', available: false, fare: 2040 }
+    ]
+  },
+  {
+    number: '12259',
+    nameBn: 'শিয়ালদহ - বিকানের দুরন্ত এক্সপ্রেস',
+    nameHi: 'सियालदह - बीकानेर दुरंतो एक्सप्रेस',
+    nameEn: 'Sealdah - Bikaner AC Duronto',
+    type: 'Duronto Express',
+    dep: '05:00 PM IST',
+    arr: '11:00 AM IST',
+    duration: '18 hrs 00 mins',
+    classes: [
+      { code: '2A', status: 'WL 19', available: false, fare: 2750 },
+      { code: '3A', status: 'WL 64', available: false, fare: 1980 }
+    ]
+  },
+  {
+    number: '22301',
+    nameBn: 'হাওড়া - নিউ জলপাইগুড়ি বন্দে ভারত এক্সপ্রেস',
+    nameHi: 'हावड़ा - न्यू जलपाईगुड़ी वंदे भारत एक्सप्रेस',
+    nameEn: 'Howrah - New Jalpaiguri Vande Bharat',
+    type: 'Vande Bharat',
+    dep: '05:55 AM IST',
+    arr: '01:25 PM IST',
+    duration: '07 hrs 30 mins',
+    classes: [
+      { code: 'EC', status: 'AVAILABLE 8', available: true, fare: 2825 },
+      { code: 'CC', status: 'WL 18', available: false, fare: 1565 }
+    ]
+  }
+];
+
+export const SPLIT_OPTIONS = [
+  {
+    id: 'split-1',
+    trainNameBn: '১২৩০১ হাওড়া রাজধানী (DDU জংশনে বার্থ পরিবর্তন)',
+    trainNameHi: '12301 हावड़ा राजधानी (DDU जंक्शन पर बर्थ परिवर्तन)',
+    trainNameEn: '12301 Howrah Rajdhani (Seat Switch at DDU)',
+    totalFare: 4460,
+    intermediate: 'Pt. Deen Dayal Upadhyaya Jn (DDU)',
+    haltMinutes: 10,
+    seg1: {
+      from: 'Howrah (HWH)',
+      to: 'DDU Jn',
+      class: '2A',
+      seat: 'Coach A2, Berth 18 (Lower)',
+      dep: '04:50 PM IST',
+      arr: '12:50 AM IST',
+      fare: 1940
+    },
+    seg2: {
+      from: 'DDU Jn',
+      to: 'New Delhi (NDLS)',
+      class: '1A',
+      seat: 'Coach H1, Cabin B Berth 03',
+      dep: '01:00 AM IST',
+      arr: '10:05 AM IST',
+      fare: 2520
+    },
+    noteBn: 'সরাসরি টিকিট: WL ২৮ ❌ | একই ট্রেনে শুধু আসন বদল করে ১০০% কনফার্ম টিকিট!',
+    noteHi: 'सीधा टिकट: WL 28 ❌ | उसी ट्रेन में सीट बदलकर 100% कन्फर्म टिकट!',
+    noteEn: 'Direct Ticket: WL 28 ❌ | 100% Confirmed seat by switching berths on same train!'
+  }
+];
+
+export const PNR_DEMOS: Record<string, any> = {
+  '6428190342': {
+    pnr: '6428190342',
+    train: '12301 Howrah - New Delhi Rajdhani Express',
+    date: '28 Sep 2026',
+    from: 'Howrah (HWH)',
+    to: 'New Delhi (NDLS)',
+    dep: '04:50 PM IST',
+    arr: '10:05 AM IST',
+    chart: 'Chart Not Prepared',
+    chartBn: 'চার্ট তৈরি হয়নি (প্রস্তুতি বাকি)',
+    prob: 92,
+    levelBn: 'খুব বেশি সম্ভাবনা (High)',
+    levelHi: 'उच्च संभावना (High)',
+    levelEn: 'High Probability (92%)',
+    passengers: [
+      { name: 'যাত্রী ১ (Passenger 1)', booking: 'GNWL 28', current: 'WL 6', coach: '2A', berth: 'WL 6' },
+      { name: 'যাত্রী ২ (Passenger 2)', booking: 'GNWL 29', current: 'WL 7', coach: '2A', berth: 'WL 7' }
+    ],
+    adviceBn: 'ঐতিহাসিক তথ্যের ভিত্তিতে ৯২% নিশ্চিত হওয়ার সম্ভাবনা রয়েছে। চূড়ান্ত চার্ট ট্রেন ছাড়ার ৩০ মিনিট আগে (IST) প্রস্তুত হবে।',
+    adviceHi: 'ऐतिहासिक रुझान के अनुसार 92% कन्फर्म होने की संभावना है। फाइनल चार्ट प्रस्थान से 30 मिनट पहले बनेगा।',
+    adviceEn: 'Based on historical trends, 92% chance of confirmation. Final chart will prepare 30 mins before departure.'
+  }
+};
+
